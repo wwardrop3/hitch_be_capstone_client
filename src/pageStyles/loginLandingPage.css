@@ -1,0 +1,42 @@
+.background-image{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-image: url("https://i.ytimg.com/vi/rQfg9g8sM_A/maxresdefault.jpg");
+    background-repeat: no-repeat;
+    justify-content: center;
+    min-width: 50vw;
+    
+  
+  }
+
+
+.hitch-title-logo{
+    position: fixed;
+    display: flex;
+    height: 80%;
+    width: 80%;
+    background-size: contain;
+    background-image: url("https://sat02pap002files.storage.live.com/y4me3HXQPkLDfZGzC_T73xcBJd5TZc7ny3eeim3h7sAaZYfZqXDuPgdRrUAacktukr6CC_NrSri5x-ezKyFq8YHG6fFxaGHPaHvelYvGsBSElTcbxJyPTUhpooznvpNFku7ZZoVc7g43eyVKTk2wC5B8n0idoT1IXZNiGs5Y7LSUlJeP4VY_7PLxUoJuBjc4vbV?width=1008&height=449&cropmode=none");
+    background-repeat: no-repeat;
+    justify-content: center;
+    min-width: 50vw;
+
+    
+
+
+}
+
+img{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+
+}
+
+.auth-forms{
+    position: fixed;
+    display: flex;
+    bottom: 20%;
+}

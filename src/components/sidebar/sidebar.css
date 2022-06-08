@@ -1,0 +1,60 @@
+
+#mySidebar{
+    color:white;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+
+ 
+}
+
+table{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+
+
+
+
+.profile-icon{
+   
+    display: flex;
+    height: 18%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 100%;
+    
+		
+}
+
+tr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.sidebar-nav-icon{
+    display: flex;
+    border: 1px black solid;
+    width: 100%;
+    height: 100%;
+   
+
+}
+
+.small-profile-picture{
+    border-radius: 100%;
+ 
+}
