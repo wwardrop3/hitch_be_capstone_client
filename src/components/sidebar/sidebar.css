@@ -9,18 +9,6 @@
  
 }
 
-table{
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-}
-
-
-
 
 
 .profile-icon{
@@ -36,7 +24,22 @@ table{
 		
 }
 
-tr{
+.sidebar-table{
+    color: black;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.sidebar-table-row{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sidebar-table-cell{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,11 +47,10 @@ tr{
 
 
 
-
 .sidebar-nav-icon{
     display: flex;
     border: 1px black solid;
-    width: 100%;
+    width: 10%;
     height: 100%;
    
 
@@ -56,5 +58,6 @@ tr{
 
 .small-profile-picture{
     border-radius: 100%;
+    min-width: 100%;
  
 }

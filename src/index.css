@@ -44,7 +44,8 @@ code {
 } */
 
 .homepage-container{
-  width: 80%;
+  display: flex;
+  width: 100%;
   height: 100%
 }
 
@@ -61,7 +62,7 @@ code {
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 5%;
 }
 
 .sidebar a {
@@ -77,20 +78,17 @@ code {
   color: #f1f1f1;
 }
 
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
 
 .openbtn {
+  position: fixed;
   font-size: 20px;
   background-size:cover;
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 5px 5px;
   border: none;
+  height: 100%;
+  background-color: rgb(139, 134, 134, 20%);
+
 }
 
 .openbtn:hover {
@@ -98,22 +96,10 @@ code {
 }
 
 #sidebar-button {
-  position: absolute;
+  position: fixed;
   transition: margin-left .5s;
   padding: 16px;
-  top:50%
+  height: 100%;
 }
 
 
-.background-image{
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  background-image: url("https://i.ytimg.com/vi/rQfg9g8sM_A/maxresdefault.jpg");
-  background-repeat: no-repeat;
-  justify-content: center;
-  min-width: 50vw;
-  
-
-}

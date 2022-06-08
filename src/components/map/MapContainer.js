@@ -1,29 +1,37 @@
-// import { useState, useMemo, useCallback, useRef } from "react";
-// import {
-//   GoogleMap,
-//   Marker,
-//   DirectionsRenderer,
-//   Circle,
-//   InfoBox,
-//   DirectionsService,
-//   MarkerClusterer,
-// } from "@react-google-maps/api";
-// import { Places } from "./Places";
-// import { Distance } from "./Distance";
-// import { MarkerPopUp } from "./MarkerPopUp";
-// /*global google*/
-// const google = window.google = window.google ? window.google : {}
-// const options = {
-//     imagePath:
-//       'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
-//   }
-  
-
+import { useEffect, useMemo, useState } from "react"
+import { HitchMap } from "./HitchMap"
+import { LoadScript, useLoadScript } from "@react-google-maps/api"
+import "./map.css"
 
 export const MapContainer = () => {
-    return (
-        <>
-        Map Container
-        </>
-    )
+    // process.env.GOOGLE_MAPS_API_KEY
+    const {isLoaded} = useLoadScript({
+        
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        libraries: ['places']
+    })
+
+
+
+    
+
+
+
+    if(!isLoaded){
+
+        return <div>Loading...</div>
+    } else {
+        
+        return(
+            <>
+            {
+                isLoaded? <HitchMap />
+                :""
+            }
+            </>
+        )
+            
+        
+
+    }
 }

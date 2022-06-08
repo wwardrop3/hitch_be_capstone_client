@@ -1,11 +1,16 @@
-.trip-list-container{
+
+
+
+.trip-list-trip-container{
     display: flex;
-    height: 100%;
-    width: 30%;
+    width: 90%;
+    height: 20%;
+    border: 1px black solid;
+    color: black;
+   
 }
 
-.trip-detail-container{
-    display: flex;
-    height: 100%;
-    width: 100%;
+.map-trip-content{
+    color: black;
 }
+

@@ -20,7 +20,7 @@ export const Login = ({ setToken }) => {
     loginUser(user).then(res => {
       if ("valid" in res && res.valid) {
         setToken(res.token, res.is_staff)
-        history.push("/")
+        history.push("/home")
       }
       else {
         setisUnsuccessful(true)
@@ -55,7 +55,7 @@ export const Login = ({ setToken }) => {
             <button className="button is-link" type="submit" >Submit</button>
           </div>
           <div className="control">
-            <Link to="/register" className="button is-link is-light">Cancel</Link>
+            <Link to="/login" className="button is-link is-light">Cancel</Link>
           </div>
         </div>
         {
