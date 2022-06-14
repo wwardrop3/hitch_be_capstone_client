@@ -8,11 +8,10 @@ import { NewTripPage } from "./pages/NewTripPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { TripDetailsPage } from "./pages/TripDetailsPage";
 
-
 const openNav = () => {
     document.getElementById("sidebar-content").style.width = "10%";
-    document.getElementById("sidebar-button").style.marginLeft = "1%";
-  }
+
+}
 
 const closeNav= () => {
     document.getElementById("sidebar-content").style.width = "0px";
@@ -20,24 +19,31 @@ const closeNav= () => {
     }
 
 export const ApplicationViews = () => {
+
+
+    
     return (
         <>
             <div className="application-views">
-
-
-            
                 <div id="sidebar-button">
-                    <div class="openbtn material-icons"  onMouseOver={openNav}>
+    
+                    <div className="openbtn material-icons"  onMouseOver={openNav}>
                         chevron_right
                     </div> 
+    
+                    
                     <div className="sidebar" id="sidebar-content" onMouseLeave={closeNav}>
                         <Sidebar />
                     </div>  
                 </div>
 
+
+            
+                
+
                 
                 
-                <Route exact path = "/home">
+                <Route exact path = {["/home" , "/"]}>
                     <HomePage />
                 </Route>
 
@@ -46,7 +52,7 @@ export const ApplicationViews = () => {
                     <NewTripPage />
                 </Route>
 
-                <Route exact path = "/trip/detail">
+                <Route exact path = "/trips/:driverTripId(\d+)">
                     <TripDetailsPage />
                 </Route>
 

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react"
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./components/navbar/Navbar"
+import { Sidebar } from "./components/sidebar/Sidebar"
 import { LoginLandingPage } from "./pages/LoginLandingPage"
 export const host = "http://localhost:8000"
 
@@ -10,6 +11,8 @@ export const host = "http://localhost:8000"
 export const Hitch = () => {
     const [token, setTokenState] = useState(localStorage.getItem('token'))
     const [staff, setStaffState] = useState(localStorage.getItem('staff'))
+
+
 
 
 
@@ -41,6 +44,7 @@ export const Hitch = () => {
             ?
             <Route>
                 <NavBar token={token} setToken={setToken} />
+                
                 <ApplicationViews />
             </Route>
             :

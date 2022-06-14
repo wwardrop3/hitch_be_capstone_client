@@ -1,16 +1,20 @@
 
 
 .hitch-logo{
-    display: flex;
-    position:fixed;
-    left:1%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-
-
-
-
+    position: fixed;
+    max-height: 5vh;
+    width: auto;
+    left: 2%;
     
+}
+
+.nav-title-logo{
+    position: fixed;
+    max-height: 5vh;
+    width: auto;
+    right: 50%
+
+
 }
 
 .logout-button{

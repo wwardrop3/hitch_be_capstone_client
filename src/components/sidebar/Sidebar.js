@@ -1,45 +1,53 @@
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./sidebar.css"
 
 
 export const Sidebar = () => {
+    const history = useHistory()
     return (
         <>
      
-            <div className="profile-icon">
-                <img className="small-profile-picture" src="https://sat02pap002files.storage.live.com/y4m8vAuRh7DFDleasfs5GGSjV1PDBzGfMn060ONdlxfm8pJkCykN379qi75xzcD5ot4ELKmHDFPpKmK74b2IJx1_5eJ1nXv7uD1KQECHMY8DmBMrQxYs04ZVX6BDyZUFJr2qKQLMktup52VISd8_imW1HKhfvwVIysPv5mR4UboLIQFVHojejQc6OCgpr7kvZ7t?width=1024&height=768&cropmode=none"/>
+            <div
+                onClick={
+                    () => {
+                        history.push("/profile")
+                    }
+                }>
+                <img className="profile-icon" src="https://sat02pap002files.storage.live.com/y4m8vAuRh7DFDleasfs5GGSjV1PDBzGfMn060ONdlxfm8pJkCykN379qi75xzcD5ot4ELKmHDFPpKmK74b2IJx1_5eJ1nXv7uD1KQECHMY8DmBMrQxYs04ZVX6BDyZUFJr2qKQLMktup52VISd8_imW1HKhfvwVIysPv5mR4UboLIQFVHojejQc6OCgpr7kvZ7t?width=1024&height=768&cropmode=none"/>
             </div>
             
-            <div id="sidebar-nav">
-                <table className="sidebar-table">
+        
+                <table>
                     <tbody>
-                        <tr className="sidebar-table-row">
-                            <td className="sidebar-table-cell">
-                                <Link to="/home"> <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                        <tr>
+                            <td>
+                                <Link to="/home"> <svg xmlns="http://www.w3.org/2000/svg" width="100%" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                <path fillRule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
                                 </svg></Link>
                             </td>
                         </tr>
-                        <tr className="sidebar-table-row">
-                            <td className="sidebar-table-cell">
-                                <Link to="/trip/new"> <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M22 38.5V26H9.5V22H22V9.5H26V22H38.5V26H26V38.5Z"/></svg></Link>
+                        <tr>
+                            <td>
+                                <Link to="/trip/new"><svg xmlns="http://www.w3.org/2000/svg" width="100%" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                </svg></Link>
                             </td>
                         </tr>
-                        <tr className="sidebar-table-row">
-                            <td className="sidebar-table-cell">
-                                <Link to="/messages"> <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                                </svg></Link>
+                        <tr>
+                            <td>
+                                <Link to="/messages"> <svg xmlns="http://www.w3.org/2000/svg" width="100%" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                </svg>
+                                </Link>
                             </td>
                         </tr>
 
                     </tbody>
                     
                 </table>
-            
-            </div>
+             
+           
 
         
             
@@ -52,3 +60,4 @@ export const Sidebar = () => {
         </>
     )
 }
+

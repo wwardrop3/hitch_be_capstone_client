@@ -20,7 +20,7 @@ export const Login = ({ setToken }) => {
     loginUser(user).then(res => {
       if ("valid" in res && res.valid) {
         setToken(res.token, res.is_staff)
-        history.push("/home")
+        history.push("/")
       }
       else {
         setisUnsuccessful(true)

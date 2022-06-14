@@ -1,3 +1,5 @@
+
+
 import { useState, useMemo, useCallback, useRef } from "react";
 import {
   GoogleMap,
@@ -7,40 +9,251 @@ import {
   InfoBox,
   DirectionsService,
   MarkerClusterer,
+  Polyline,
+  InfoWindow,
 } from "@react-google-maps/api";
-// import { Places } from "./Places";
-// import { Distance } from "./Distance";
-// import { MarkerPopUp } from "./MarkerPopUp";
+import "./map.css"
+import { Link } from "react-router-dom";
 /*global google*/
 const google = window.google = window.google ? window.google : {}
-const options = {
-    imagePath:
-      'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
-  }
 
-export const HitchMap = () => {
-    const center = useMemo(()=> ({lat: parseFloat(localStorage?.getItem("lat")), lng: parseFloat(localStorage?.getItem("lng"))}),[])
+const lineOptions = {
+    strokeColor: 'blue',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    visible: true,
+    radius: 30000,
+    zIndex: 1
+  };
+
+// const clusterStyles = 
+//     [{
+//         height: 50,
+//         width: 50, 
+//         opacity: 1,
+//         textColor: "black",
+//         scale: 100,
+//         fontSize: 9,
+
+//     }]
+    
+
+
+
+export const HitchMap = ({userLocation, onLoad, trips, mapRef, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, setSearchPoint}) => {
     const options = useMemo(
         () => ({
         mapId: "919771f94d285faa",
         disableDefaultUI: true,
         clickableIcons: false,
-        }),
-        []
-    )
+        }))
+    
+    const [directions, setDirections] = useState()
+ 
+    
+
+
+    const fetchDirections = () => {
+        
+        if(searchPoint != undefined){
+
+        const service = new google.maps.DirectionsService();
+        service.route(
+            {
+                origin: searchPoint,
+                destination: selectedPoint?.origin,
+                travelMode: google.maps.TravelMode.DRIVING
+            },
+            (result, status) => {
+                if (status === "OK" && result) {
+                    setDirections(result)
+                }
+            }
+        )
+    }
+}
+const onLoad2 = polyline => {
+    console.log('polyline: ', polyline)
+  };
+
     return (
         <>
-            <div className="map">
-                <GoogleMap 
-                    zoom={11} 
-                    center={center} 
-                    mapContainerClassName="map-container" 
-                    options={options}
-                    // onLoad={onLoad}
-                    >
-
-                    </GoogleMap>
+            <div>
+                
+                {/* {directions ? console.log(directions) :""} */}
+                
             </div>
+
+                    <div className="map">
+                        <GoogleMap 
+                            zoom={11} 
+                            center={searchPoint} 
+                            mapContainerClassName="map" 
+                            options={options}
+                            onLoad={onLoad}
+                           
+                            
+                            >
+                   {trips ?
+                        trips?.map((trip) => (
+                                    
+                                    <>
+                                    <Polyline
+                                        onLoad={onLoad2}
+                                        path={trip?.path_points}
+                                        options={lineOptions}
+                                    />
+                                    
+                                    
+                                    <Marker 
+                                    key={parseFloat(trip.origin?.lat)} 
+                                    position={trip?.origin}
+                                    icon={{
+                                        path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                        fillColor: "green",
+                                        fillOpacity: .6,
+                                        strokeWeight: 1,
+                                        scale: 2,
+                                        strokeColor: "black",
+                                        anchor: new google.maps.Point(7,15)
+                                    }}
+                                    onClick = {
+                                        () => {
+                                            
+                                            setShowInfoBox(!showInfoBox)
+                                            setSelectedPoint(trip)
+                                            // fetchDirections(trip)
+                                           
+                                        }}
+                                    
+                                    />
+
+                                <Marker 
+                                    key={parseFloat(trip.destination?.lat)} 
+                                    position={trip?.destination}
+                                    icon={{
+                                        path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                        fillColor: "red",
+                                        fillOpacity: .6,
+                                        strokeWeight: 1,
+                                        scale: 2,
+                                        strokeColor: "black",
+                                        anchor: new google.maps.Point(7,15)
+                                    }}
+                                    onClick = {
+                                        () => {
+                                            
+                                            setShowInfoBox(!showInfoBox)
+                                            setSelectedPoint(trip)
+                                            // fetchDirections(trip)
+                                           
+                                        }}
+                                    
+                                    />
+
+                                    {/* <Circle center={trip?.origin} radius={trip?.pick_up_radius * 1609} /> */}
+
+                                    </>
+                                    )
+                        ):""}
+                
+                                    
+                                               
+                            {showInfoBox ?  
+                                <>
+                                <InfoBox
+                                    position={selectedPoint?.origin}
+                                    clickable={true}
+                                    onCloseClick={()=>
+                                        setSelectedPoint({})}
+                                    >
+                                        <div className='popup-window'>
+                                        <Link to={`/trips/${selectedPoint?.id}`}> <h2> {selectedPoint?.start_date}</h2></Link>
+                                            <div className='image-container'>
+                                                <img id='prop-image' src = {selectedPoint?.driver.profile_image_url} height="150px"></img>
+                                            
+                                            </div>
+                                            
+                                            
+                                            </div>
+                                        </InfoBox>
+                              
+                                    
+                                </>
+
+                        
+                        
+                            :""}
+                            {searchPoint ?
+                            <>
+                            <Marker 
+                                position={searchPoint}
+                                key={parseFloat(searchPoint.lat)} 
+                                icon={{
+                                    path: "M17.659,9.597h-1.224c-0.199-3.235-2.797-5.833-6.032-6.033V2.341c0-0.222-0.182-0.403-0.403-0.403S9.597,2.119,9.597,2.341v1.223c-3.235,0.2-5.833,2.798-6.033,6.033H2.341c-0.222,0-0.403,0.182-0.403,0.403s0.182,0.403,0.403,0.403h1.223c0.2,3.235,2.798,5.833,6.033,6.032v1.224c0,0.222,0.182,0.403,0.403,0.403s0.403-0.182,0.403-0.403v-1.224c3.235-0.199,5.833-2.797,6.032-6.032h1.224c0.222,0,0.403-0.182,0.403-0.403S17.881,9.597,17.659,9.597 M14.435,10.403h1.193c-0.198,2.791-2.434,5.026-5.225,5.225v-1.193c0-0.222-0.182-0.403-0.403-0.403s-0.403,0.182-0.403,0.403v1.193c-2.792-0.198-5.027-2.434-5.224-5.225h1.193c0.222,0,0.403-0.182,0.403-0.403S5.787,9.597,5.565,9.597H4.373C4.57,6.805,6.805,4.57,9.597,4.373v1.193c0,0.222,0.182,0.403,0.403,0.403s0.403-0.182,0.403-0.403V4.373c2.791,0.197,5.026,2.433,5.225,5.224h-1.193c-0.222,0-0.403,0.182-0.403,0.403S14.213,10.403,14.435,10.403",
+                                    fillColor: "black",
+                                    fillOpacity: .6,
+                                    strokeWeight: 1,
+                                    scale: 2,
+                                    strokeColor: "black",
+                                    anchor: new google.maps.Point(7,15)
+                                }}
+
+                               
+                            
+                            />
+                       
+                        </>
+                        :""}
+                                    
+                                    
+                                
+                                
+                                                
+                                    
+                             
+                    
+                      
+                        
+                    
+
+
+                            {directions ? 
+                            <>
+                            <DirectionsRenderer 
+                            directions={directions} 
+                            options={
+                                {polylineOptions: {
+                                    strokeColor: "#eb4034",
+                                    strokeWeight: 5
+                                }}
+                            }
+                            />
+
+
+                            
+                            
+                
+                    
+                        </>
+                        :""}
+
+
+
+
+                        
+                        
+                    </GoogleMap>
+
+                </div>
+                
+           
         </>
     )
-}
+                }
+    
