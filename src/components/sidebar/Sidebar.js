@@ -2,7 +2,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./sidebar.css"
 
 
-export const Sidebar = () => {
+export const Sidebar = ({member, isDriver, setIsDriver}) => {
     const history = useHistory()
     return (
         <>
@@ -13,8 +13,12 @@ export const Sidebar = () => {
                         history.push("/profile")
                     }
                 }>
-                <img className="profile-icon" src="https://sat02pap002files.storage.live.com/y4m8vAuRh7DFDleasfs5GGSjV1PDBzGfMn060ONdlxfm8pJkCykN379qi75xzcD5ot4ELKmHDFPpKmK74b2IJx1_5eJ1nXv7uD1KQECHMY8DmBMrQxYs04ZVX6BDyZUFJr2qKQLMktup52VISd8_imW1HKhfvwVIysPv5mR4UboLIQFVHojejQc6OCgpr7kvZ7t?width=1024&height=768&cropmode=none"/>
+                <img className="profile-icon" src={member?.profile_image_url}/>
             </div>
+
+            <div className="notifications">RIDE REQUESTS</div>
+            
+    
             
         
                 <table>
@@ -29,7 +33,7 @@ export const Sidebar = () => {
                         </tr>
                         <tr>
                             <td>
-                                <Link to="/trip/new"><svg xmlns="http://www.w3.org/2000/svg" width="100%" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <Link to={localStorage.getItem("is_driver")=="true" ? "/trip/new/driver" : "/trip/new/passenger"}><svg xmlns="http://www.w3.org/2000/svg" width="100%" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                                 </svg></Link>
                             </td>
@@ -46,6 +50,11 @@ export const Sidebar = () => {
                     </tbody>
                     
                 </table>
+                
+                <div className="user-mode">
+                    {isDriver ? <h5>Driver Mode</h5> : <h5>Passenger Mode</h5> }
+                </div>
+                
              
            
 

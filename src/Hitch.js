@@ -11,6 +11,9 @@ export const host = "http://localhost:8000"
 export const Hitch = () => {
     const [token, setTokenState] = useState(localStorage.getItem('token'))
     const [staff, setStaffState] = useState(localStorage.getItem('staff'))
+    const [isDriver, setIsDriver] = useState(true)
+
+    
 
 
 
@@ -43,9 +46,9 @@ export const Hitch = () => {
         token
             ?
             <Route>
-                <NavBar token={token} setToken={setToken} />
+                <NavBar isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} />
                 
-                <ApplicationViews />
+                <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} />
             </Route>
             :
             <Redirect to="/login" />

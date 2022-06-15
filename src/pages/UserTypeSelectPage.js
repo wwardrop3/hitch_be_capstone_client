@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "../pageStyles/user_type_select_page.css"
 
@@ -5,13 +6,30 @@ import "../pageStyles/user_type_select_page.css"
 
 // going to add a location search 
 
-export const UserTypeSelectPage = () => {
+export const UserTypeSelectPage = ({isDriver, setIsDriver}) => {
     const history = useHistory()
+    const [showModal, setShowModal] = useState(false)
 
     
     return (
         <>
-            <div className="user-type-container">
+
+  
+
+
+
+            <div className="user-type-container">                     
+
+
+
+
+
+
+
+
+
+
+
                 <div className="type-passenger">
                     <h1>Looking for a ride</h1>
                 </div>
@@ -20,16 +38,18 @@ export const UserTypeSelectPage = () => {
                     <h1>Looking for a passenger</h1>
                 </div>
 
+               
                 <Link
                 className="user-type"
-                to="/trip/new_passenger_trip"
+                to= "/trip/new/passenger"
                 onClick = {
                     () => {
-                        localStorage.setItem("user_type", "passenger")
+                        setIsDriver(false)
+                       
                   
                         
-                    }
-                }><img src="https://cdn.vox-cdn.com/thumbor/W6dccN6tlKcHBtFSMYkd9BsKd7M=/0x0:7492x5619/1200x800/filters:focal(0x0:7492x5619)/cdn.vox-cdn.com/uploads/chorus_image/image/46484254/shutterstock_244451992.0.0.jpg" />
+                    }}
+                    ><img src="https://cdn.vox-cdn.com/thumbor/W6dccN6tlKcHBtFSMYkd9BsKd7M=/0x0:7492x5619/1200x800/filters:focal(0x0:7492x5619)/cdn.vox-cdn.com/uploads/chorus_image/image/46484254/shutterstock_244451992.0.0.jpg" />
 
 
                 
@@ -38,10 +58,10 @@ export const UserTypeSelectPage = () => {
 
                 <Link
                 className="user-type"
-                to= "/trip/new_driver_trip"
+                to= "/trip/new/driver"
                 onClick = {
                     () => {
-                        localStorage.setItem("user_type", "driver")
+                        setIsDriver(true)
                       
                     }
                 }><img src="https://media.istockphoto.com/photos/drive-test-at-car-dealership-picture-id1138561454?k=20&m=1138561454&s=612x612&w=0&h=TYiFHkVhGXvbdrlURGEQMlerXYb4F8ck7zaNARQzQJU=" />

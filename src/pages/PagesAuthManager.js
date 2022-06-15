@@ -8,3 +8,12 @@ export const get_member = () => {
         }
     }).then(res => res.json())
 }
+
+export const delete_member = (id) => {
+    return fetch(`${host}/members/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+}

@@ -1,0 +1,65 @@
+.trip-details-page-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.trip-map{
+    display: flex;
+    width: 60%;
+    height: 100%;
+}
+
+.trip-content{
+    display: flex;
+    width: 40%;
+    height: 100%;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.location-search {
+    position: fixed;
+    z-index: 1;
+    width: 20%;
+    padding: 1rem;
+    background: rgba(185, 185, 185, 0.426);
+    color: #fff;
+    right:0px;
+}
+
+.controls input {
+    border: none;
+    }
+
+.map-container {
+    width: 100%;
+    height: 100%;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+}
+
+.highlight {
+    font-size: 1.25rem;
+    font-weight: bold;
+}

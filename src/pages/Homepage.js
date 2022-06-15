@@ -49,7 +49,7 @@ export const HomePage = () => {
                 (response) => {
                     setTrips(response)}
             )
-        },[searchPoint]
+        },[refresh, searchPoint]
         
     
     )
