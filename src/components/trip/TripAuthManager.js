@@ -9,8 +9,16 @@ export const get_all_driver_trips = (lat, lng) => {
     }).then(res => res.json())
 }
 
-export const get_driver_trip = (id) => {
-    return fetch(`${host}/driver_trips/${id}`, {
+export const getDriverTrip = (id) => {
+    return fetch(`${host}/driver_trips/${id}`,{
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+}})
+    .then(res => res.json())
+}
+
+export const get_all_passenger_trips = (lat, lng) => {
+    return fetch(`${host}/passenger_trips?lat=${lat}&lng=${lng}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -18,8 +26,19 @@ export const get_driver_trip = (id) => {
 }
 
 
-export const create_new_trip = (trip) => {
+export const create_new_driver_trip = (trip) => {
     return fetch(`${host}/driver_trips`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(trip)
+    }).then(res => res.json())
+}
+
+export const create_new_passenger_trip = (trip) => {
+    return fetch(`${host}/passenger_trips`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -89,3 +108,10 @@ export const get_driver_trips_by_passenger_trip = (tempPassengerTrip) => {
     }).then(res => res.json())
 }
     
+export const get_tags = () => {
+    return fetch(`${host}/tags`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    }).then(res => res.json())
+}

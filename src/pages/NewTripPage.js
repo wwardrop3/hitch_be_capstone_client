@@ -4,20 +4,31 @@ import { HitchMap } from "../components/map/HitchMap";
 import { CreateTrip } from "../components/trip/CreateTrip"
 import { create_new_trip } from "../components/trip/TripAuthManager";
 
-export const NewTripPage = ({refresh, setRefresh}) => {
+import {
+  GoogleMap,
+  Marker,
+  DirectionsRenderer,
+  Circle,
+  InfoBox,
+  DirectionsService,
+  MarkerClusterer,
+  Polyline,
+  InfoWindow,
+} from "@react-google-maps/api";
+import { Link } from "react-router-dom";
+/*global google*/
+const google = window.google = window.google ? window.google : {}
+
+export const NewTripPage = ({isDriver, setIsDriver, refresh, setRefresh, mapRef, setMapRef, tempTrip, setTempTrip, origin, setOrigin, destination, setDestination}) => {
     const [directions, setDirections] = useState()
     const [showInfoBox, setShowInfoBox] = useState(false)
     const [cityState, setCityState] = useState()
-    const userLocation = useMemo(()=> ({lat: parseFloat(localStorage?.getItem("lat")), lng: parseFloat(localStorage?.getItem("lng"))}),[])
     const [searchPoint, setSearchPoint] = useState()
-    const [trips, setTrips] = useState()
-    const [mapRef, setMapRef] = useState()
+    
+    
 
     
-    
-    // Form fields to create driver trip
-    const [origin, setOrigin] = useState()
-    const [destination, setDestination] = useState()
+
     const onLoad = useCallback(map => (setMapRef(map)), [searchPoint])
 
   
@@ -48,15 +59,29 @@ export const NewTripPage = ({refresh, setRefresh}) => {
 
     return (
         <>
+         {isDriver ? <h1>New Driver Trip</h1> : <h1>New Passenger Trip</h1>}
+            
             <div className="homepage-trip-list">
-                <CreateTrip refresh={refresh} setRefresh={setRefresh} mapRef={mapRef} setMapRef = {setMapRef}/>
+                <CreateTrip isDriver={isDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} />
             </div>
 
             {/* <div className="homepage-map-container">
-                <HitchMap onLoad = {onLoad} userLocation= {userLocation} origin = {origin} destination={destination} setDirections={setDirections} directions = {directions} setShowInfoBox = {setShowInfoBox} showInfoBox = {showInfoBox} = {searchPoint} setFocusTrip = {setFocusTrip} mapRef={mapRef} setMapRef = {setMapRef} />
+                <div className="map">
+                        <GoogleMap 
+                            zoom={11} 
+                            center={searchPoint} 
+                            mapContainerClassName="map" 
+                            options={options}
+                            onLoad={onLoad}
+                           
+                            
+                            >
+                                </GoogleMap>
 
+                </div>
             </div> */}
             
         </>
     )
-}}
+}
+}

@@ -17,8 +17,23 @@ import { Link } from "react-router-dom";
 /*global google*/
 const google = window.google = window.google ? window.google : {}
 
+const colors = {
+    1: "red",
+    2: "blue",
+    3: "green",
+    4: "yellow",
+    5: "orange",
+    6: "red"
+}
+
+const getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  }
+
 const lineOptions = {
-    strokeColor: 'blue',
+    strokeColor: Math.randomI,
     strokeOpacity: 0.8,
     strokeWeight: 2,
     fillColor: '#FF0000',
@@ -44,8 +59,7 @@ const lineOptions = {
     
 
 
-
-export const HitchMap = ({userLocation, onLoad, trips, mapRef, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, setSearchPoint}) => {
+export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, isDriver}) => {
     const options = useMemo(
         () => ({
         mapId: "919771f94d285faa",
@@ -106,12 +120,24 @@ const onLoad2 = polyline => {
                                     <Polyline
                                         onLoad={onLoad2}
                                         path={trip?.path_points}
-                                        options={lineOptions}
+                                        options={{
+                                            strokeColor: colors[getRandomIntInclusive(1,6)],
+                                            strokeOpacity: 0.8,
+                                            strokeWeight: 2,
+                                            fillColor: '#FF0000',
+                                            fillOpacity: 0.35,
+                                            clickable: false,
+                                            draggable: false,
+                                            editable: false,
+                                            visible: true,
+                                            radius: 30000,
+                                            zIndex: 1
+                                          }}
                                     />
                                     
                                     
                                     <Marker 
-                                    key={parseFloat(trip.origin?.lat)} 
+                                    key={parseFloat(trip?.origin.lat)} 
                                     position={trip?.origin}
                                     icon={{
                                         path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
@@ -175,7 +201,7 @@ const onLoad2 = polyline => {
                                         <div className='popup-window'>
                                         <Link to={`/trips/${selectedPoint?.id}`}> <h2> {selectedPoint?.start_date}</h2></Link>
                                             <div className='image-container'>
-                                                <img id='prop-image' src = {selectedPoint?.driver.profile_image_url} height="150px"></img>
+                                                <img id='prop-image' src = {isDriver ? selectedPoint?.driver.profile_image_url: selectedPoint?.passenger.profile_image_url} height="150px"></img>
                                             
                                             </div>
                                             

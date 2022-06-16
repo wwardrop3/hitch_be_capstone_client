@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Places } from "../map/Places"
-import { create_new_trip } from "./TripAuthManager"
+import { create_new_driver_trip, create_new_passenger_trip, get_tags, sign_up_passenger } from "./TripAuthManager"
 
 import {
     GoogleMap,
@@ -17,32 +17,55 @@ const google = window.google = window.google ? window.google : {}
   
 
 
-export const CreateTrip = ({mapRef}) => {
+export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDestination, origin, setOrigin}) => {
     const history = useHistory()
-    const [destination, setDestination] = useState()
-    const [origin, setOrigin] = useState()
 
-
+    const [checkedState, setCheckedState] = useState({})
+    const [tags, setTags] = useState()
     
+    
+    // useEffect(
+    //     get_tags()
+    //     .then(
+    //         (response) => {
+    //             setTags(response)
+    //         }
+    //     ),[]
+    // )
 
-    const [newTrip, setNewTrip] = useState({
-        origin: origin,
-        destination: destination,
-        start_date: "",
-        detour_radius: "",
-        trip_summary: "",
-        seats: 1,
-        completion_date: "",
-        completed: false,
-        path: "",
-        trip_distance: "",
-        expected_travel_time: 10,
-        tags: [1,2]
+    // useEffect(
+    //     () => {
+    //         let emptyObject = {}
+    //         tags.map((tag) => {
+    //             return emptyObject[tag.id]= false
+    //         })
+    //         setCheckedState(emptyObject)
+    //     },[tags]
+    // )
+
+    // const handleChecks = (tagId) => {
+    //     let copy = {...checkedState}
+    //     copy[parseInt(tagId)] = !copy[parseInt(tagId)]
+
+    //     setCheckedState(copy)
+    // }
+
+    // const transferChecks = () => {
+    //     let copy = {...tempTrip}
+    //     for (const property in checkedState) {
+    //         if(checkedState[property] === true){
+    //             copy.tags.push(parseInt(property))
+    //         } 
+        
+    //     setTempTrip(copy)
+    //     }}
 
 
-
-
-    })
+    // const checkChecked = (tagId) => {
+    //     let checked = ""
+    //     tagId in tempTrip.tags ? checked = true:checked=false
+    //     return checked
+    // }
 
 
     const options = useMemo(
@@ -60,9 +83,13 @@ export const CreateTrip = ({mapRef}) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        newTrip.origin = origin
-        newTrip.destination = destination
-        create_new_trip(newTrip).then(history.push("/home"))
+        tempTrip.origin = origin
+        tempTrip.destination = destination
+        // transferChecks()
+        isDriver ?
+            create_new_driver_trip(tempTrip).then(history.push("/home"))
+        :
+            create_new_passenger_trip(tempTrip).then(history.push("/home"))
     }
 
 
@@ -77,11 +104,11 @@ export const CreateTrip = ({mapRef}) => {
             },
             (result, status) => {
                 if (status === "OK" && result) {
-                    const copy = {...newTrip}
+                    const copy = {...tempTrip}
                     copy.path = result.routes[0].overview_polyline
                     copy.trip_distance = result.routes[0].legs[0].distance.value
                     copy.expected_travel_time = result.routes[0].legs[0].duration.value
-                    setNewTrip(copy)
+                    setTempTrip(copy)
                 }
             }
         )
@@ -93,11 +120,13 @@ export const CreateTrip = ({mapRef}) => {
         }, [destination]
     )
 
+  
+
 
     return (
         <>
             <div className="create-trip-content">
-                <h1>Create New Trip</h1>
+                
 
                 <div className="new-trip-form">
                     <div className="search-box">
@@ -132,23 +161,25 @@ export const CreateTrip = ({mapRef}) => {
                             <input className="input" type="datetime-local"
                             onChange = {
                                 (evt) => {
-                                    const copy = {...newTrip}
+                                    const copy = {...tempTrip}
                                     copy.start_date = evt.target.value
-                                    setNewTrip(copy)
+                                    setTempTrip(copy)
                                 }
                             } />
                         </div>
                         </div>
-            
+
+            {isDriver ?
+            <>
                         <div className="field">
                             <label className="label">Detour Radius</label>
                             <div className="control">
                                 <input className="input" type="number"
                                 onChange = {
                                     (evt) => {
-                                        const copy = {...newTrip}
+                                        const copy = {...tempTrip}
                                         copy.detour_radius = parseInt(evt.target.value)
-                                        setNewTrip(copy)
+                                        setTempTrip(copy)
                                     }
                                 }
                                 />
@@ -159,19 +190,7 @@ export const CreateTrip = ({mapRef}) => {
                      
                     
                         
-                        <div className="field">
-                        <label className="label">Trip Summary</label>
-                        <div className="control">
-                            <input className="input" type="text" 
-                            onChange = {
-                                (evt) => {
-                                    const copy = {...newTrip}
-                                    copy.trip_summary = evt.target.value
-                                    setNewTrip(copy)
-                                }
-                            }/>
-                        </div>
-                        </div>
+                        
             
                         <div className="field">
                         <label className="label">Seats Available</label>
@@ -179,16 +198,55 @@ export const CreateTrip = ({mapRef}) => {
                             <input className="input" type="number" 
                             onChange = {
                                 (evt) => {
-                                    const copy = {...newTrip}
+                                    const copy = {...tempTrip}
                                     copy.seats = evt.target.value
-                                    setNewTrip(copy)
+                                    setTempTrip(copy)
                                 }
                             }/>
                         </div>
                         </div>
+                        {/* <div className="tags">
+
+                        {tags?.map(tag => {
+
+                            return ( 
+                                <>
+                                <label htmlFor={`${tag.id}`}>{tag.name}</label>
+                                <input type="checkbox" value={`${tag.id}`} name={`${tag.name}`} checked = {console.log(checkChecked(tag.id))}
+
+                                onChange={
+                                    () => {
+                                        handleChecks(tag.id)
+                                    }}
+                                    />
+                            </>
+                            )
+                                })}
+                            </div> */}
+                   
+
+                       
             
             
+                        
+                
+                </>:""}
+
+                <div className="field">
+                        <label className="label">Trip Summary</label>
                         <div className="control">
+                            <input className="input" type="text" 
+                            onChange = {
+                                (evt) => {
+                                    const copy = {...tempTrip}
+                                    copy.trip_summary = evt.target.value
+                                    setTempTrip(copy)
+                                }
+                            }/>
+                        </div>
+                        </div>
+                        
+                <div className="control">
                             <button className="button is-link" 
                             onClick={
                                 (evt) => {
@@ -205,4 +263,5 @@ export const CreateTrip = ({mapRef}) => {
             </div>
         </>
     )
+
                         }

@@ -70,13 +70,6 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                     }
                                 }>Delete Trip</button>
 
-                                <button
-                                onClick={
-                                    () => {
-                                        history.push(`/trips/${trip.id}`)
-                                }
-                            }
-                                >Edit Trip</button>
                 
                 </>
                                 
@@ -94,7 +87,7 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                             }
                                         )
                                     }
-                                }>Leave Trip</button>
+                                }>Cancel Ride</button>
                             
                             :
                             <button
@@ -107,7 +100,7 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                             }
                                         )
                                     }
-                                }>Sign Up</button>
+                                }>Request Ride</button>
                             
                             
                             }
