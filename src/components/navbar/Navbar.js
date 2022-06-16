@@ -4,7 +4,7 @@ import "./navbar.css"
 
 
 
-export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setShowModal}) => {
+export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setShowModal, refresh, setRefresh}) => {
     const history = useHistory()
     const handleLogout = () => {
         history.push("/login")
@@ -32,7 +32,13 @@ export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setSh
                     <input class="switch-button-checkbox" type="checkbox" 
                     onClick={
                         () => {
-                            setIsDriver(!isDriver)}}></input>
+                            setIsDriver(!isDriver)
+                            setRefresh(!refresh)
+                    
+                        
+                        }}
+                            
+                            ></input>
                     <label class="switch-button-label" for=""><span class="switch-button-label-span">Driver</span></label>
                 </div>
             </div>

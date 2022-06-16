@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Places } from "../map/Places"
-import { create_new_driver_trip, get_tags } from "./TripAuthManager"
+import { create_new_driver_trip, create_new_passenger_trip, get_tags, sign_up_passenger } from "./TripAuthManager"
 
 import {
     GoogleMap,
@@ -89,7 +89,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
         isDriver ?
             create_new_driver_trip(tempTrip).then(history.push("/home"))
         :
-            history.push("/home")
+            create_new_passenger_trip(tempTrip).then(history.push("/home"))
     }
 
 
@@ -190,19 +190,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                      
                     
                         
-                        <div className="field">
-                        <label className="label">Trip Summary</label>
-                        <div className="control">
-                            <input className="input" type="text" 
-                            onChange = {
-                                (evt) => {
-                                    const copy = {...tempTrip}
-                                    copy.trip_summary = evt.target.value
-                                    setTempTrip(copy)
-                                }
-                            }/>
-                        </div>
-                        </div>
+                        
             
                         <div className="field">
                         <label className="label">Seats Available</label>
@@ -243,6 +231,21 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                         
                 
                 </>:""}
+
+                <div className="field">
+                        <label className="label">Trip Summary</label>
+                        <div className="control">
+                            <input className="input" type="text" 
+                            onChange = {
+                                (evt) => {
+                                    const copy = {...tempTrip}
+                                    copy.trip_summary = evt.target.value
+                                    setTempTrip(copy)
+                                }
+                            }/>
+                        </div>
+                        </div>
+                        
                 <div className="control">
                             <button className="button is-link" 
                             onClick={

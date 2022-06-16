@@ -2,7 +2,7 @@ import { useLoadScript } from "@react-google-maps/api"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { HitchMap } from "../components/map/HitchMap"
 import { Places } from "../components/map/Places"
-import { get_all_driver_trips, get_all_driver_trips_decoded, get_decoded_trips } from "../components/trip/TripAuthManager"
+import { get_all_driver_trips, get_all_driver_trips_decoded, get_all_passenger_trips, get_decoded_trips } from "../components/trip/TripAuthManager"
 import { TripList } from "../components/trip/TripList"
 import "../pageStyles/homepage.css"
 
@@ -12,7 +12,7 @@ import "../pageStyles/homepage.css"
 // focus trip location
 
 
-export const HomePage = () => {
+export const HomePage = ({isDriver}) => {
     
     const [directions, setDirections] = useState()
     const [showInfoBox, setShowInfoBox] = useState(false)
@@ -44,12 +44,12 @@ export const HomePage = () => {
 
     useEffect(
         () => {
-            get_all_driver_trips(searchPoint.lat, searchPoint.lng)
+            isDriver ? get_all_passenger_trips(searchPoint.lat, searchPoint.lng) : get_all_driver_trips(searchPoint.lat, searchPoint.lng)
             .then(
                 (response) => {
                     setTrips(response)}
             )
-        },[refresh, searchPoint]
+        },[refresh, searchPoint, isDriver]
         
     
     )

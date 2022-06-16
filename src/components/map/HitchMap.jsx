@@ -59,7 +59,7 @@ const lineOptions = {
     
 
 
-export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint}) => {
+export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, isDriver}) => {
     const options = useMemo(
         () => ({
         mapId: "919771f94d285faa",
@@ -201,7 +201,7 @@ const onLoad2 = polyline => {
                                         <div className='popup-window'>
                                         <Link to={`/trips/${selectedPoint?.id}`}> <h2> {selectedPoint?.start_date}</h2></Link>
                                             <div className='image-container'>
-                                                <img id='prop-image' src = {selectedPoint?.driver.profile_image_url} height="150px"></img>
+                                                <img id='prop-image' src = {isDriver ? selectedPoint?.driver.profile_image_url: selectedPoint?.passenger.profile_image_url} height="150px"></img>
                                             
                                             </div>
                                             

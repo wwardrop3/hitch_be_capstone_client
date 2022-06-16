@@ -12,6 +12,9 @@ export const Hitch = () => {
     const [token, setTokenState] = useState(localStorage.getItem('token'))
     const [staff, setStaffState] = useState(localStorage.getItem('staff'))
     const [isDriver, setIsDriver] = useState(true)
+    const [refresh, setRefresh] = useState(false)
+    const [searchPoint, setSearchPoint] = useState()
+
 
     
 
@@ -27,7 +30,7 @@ export const Hitch = () => {
 
     const currentLocation = useMemo(
         () => {
-            navigator.geolocation.getCurrentPosition(success)
+            setSearchPoint(navigator.geolocation.getCurrentPosition(success))
         },[]
     )
 
@@ -46,9 +49,9 @@ export const Hitch = () => {
         token
             ?
             <Route>
-                <NavBar isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} />
+                <NavBar refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} />
                 
-                <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} />
+                <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh}/>
             </Route>
             :
             <Redirect to="/login" />
