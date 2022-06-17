@@ -16,6 +16,7 @@
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-google-maps": "^9.4.5",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^5.3.3",
     "react-scripts": "5.0.1",
     "use-places-autocomplete": "^3.0.0",

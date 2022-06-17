@@ -86,10 +86,13 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
         tempTrip.origin = origin
         tempTrip.destination = destination
         // transferChecks()
-        isDriver ?
-            create_new_driver_trip(tempTrip).then(history.push("/home"))
-        :
-            create_new_passenger_trip(tempTrip).then(history.push("/home"))
+        // isDriver ?
+        create_new_driver_trip(tempTrip).then(
+            () => {
+                history.push("/home")
+            })
+        // :
+        //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
     }
 
 

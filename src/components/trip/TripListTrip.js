@@ -1,13 +1,62 @@
-import { Link, useHistory } from "react-router-dom"
+import { useState } from "react"
+import ReactStars from "react-rating-stars-component";
+import React from "react";
+import { render } from "react-dom";import { Link, useHistory } from "react-router-dom"
 import "./trip.css"
-import { delete_driver_trip, remove_passenger, sign_up_passenger, update_driver_trip } from "./TripAuthManager"
+import { delete_driver_trip, rate_driver, remove_passenger, sign_up_passenger, update_driver_trip } from "./TripAuthManager"
+import { useEffect } from "react";
 
 export const TripListTrip = ({trip, refresh, setRefresh}) => {
 
+    const [showRating, setShowRating]= useState(false)
+    const [rating, setRating] = useState({})
+
+
+    useEffect(
+        () => {
+            setRating({
+                driver_trip: trip.id,
+                passenger_trip: trip.passenger_trips[0]?.id,
+                rating: 0,
+                review: ""
+            })
+        },[trip]
+    )
     const history = useHistory()
 
-
+    const ratingChanged = (newRating) => {
+        const copy = {...rating}
+        copy.rating = newRating
+        setRating(copy)
+        }
+        
     
+
+    const handleSubmit = (trip) => {
+        const copy = {...trip}
+        copy.completed = true
+        copy.completion_date = Date.now()
+        // update_driver_trip(copy)
+        update_driver_trip(copy).then(
+            () => {
+                debugger
+                rate_driver(rating)
+                .then(
+                    () => {
+                        setShowRating(!showRating)
+                        setRefresh(!refresh)
+                    }
+                )
+            }
+        )
+        
+
+    }
+     
+        
+    
+
+
     return(
         <>    
         
@@ -56,7 +105,10 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                     
                 </div>
                 </Link>
-                {trip.is_user ? 
+            {trip?.completed ? 
+                <div>Completed</div>
+            :
+            trip.is_user ? 
                 <>
                  <button
                                 onClick={
@@ -76,7 +128,9 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                
 
                                 :
+
                                 trip.is_signed_up ?
+                                <>
                                 <button
                                 onClick={
                                     () => {
@@ -88,7 +142,23 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                         )
                                     }
                                 }>Cancel Ride</button>
-                            
+
+                                <button
+                                onClick={
+                                    () => {
+                                        setShowRating(!showRating)
+                                    }
+                                }
+                                >Complete Trip</button>
+
+                                
+                            </>
+                            :
+
+                            trip?.passenger_trips[0] ?
+
+                            <div>Full</div>
+
                             :
                             <button
                                 onClick={
@@ -100,16 +170,96 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                             }
                                         )
                                     }
-                                }>Request Ride</button>
+                                }>Sign Up For Ride</button>
                             
                             
                             }
 
+                
+    
+                
+
+
+
+                        
             </div>
+
+            
+
+            
 
     
         </div>
+
+        {showRating ? 
+            <>
+            <h2>Modal Example</h2>
+
+
+                <div id="myModal" class="modal">
+
+                <div class="modal-content">
+                    <span class="close"
+                    onClick={
+                        () => {
+                            setShowRating(!showRating)
+                        }
+                    }>&times;</span>
+
+
+                        <div className="trip-rating">
+                            <h1>Rate Trip</h1>
+                            
+                            
+                            
+                      
+
+                        <ReactStars
+                            count={5}
+                            onChange={ratingChanged}
+                            size={24}
+                            activeColor="#ffd700"
+                        />
+                        </div>
+
+                        <div className="trip-review">
+                            
+                            <label htmlFor="trip-review">Additional Comments:</label>
+                            <input type="text" name = "trip-review" 
+                            onChange={
+                                (evt) => {
+                                    const copy = {...rating}
+                                    copy.review = evt.target.value
+                                    setRating(copy)
+                                }
+                            }/>
+                        </div>    
+
+                        <button
+                        onClick={
+                            () => {
+                                handleSubmit(trip)
+                            }
+                        }>Submit</button>
+
+                                            
+ 
+                    
+
+                </div>
+
+                </div>
+            
+            </>
+            
+        
+        
+        
+        :""}
         
         </>
+            
+            
+                
     )
 }

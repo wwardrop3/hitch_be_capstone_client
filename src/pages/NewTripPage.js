@@ -24,6 +24,7 @@ export const NewTripPage = ({isDriver, setIsDriver, refresh, setRefresh, mapRef,
     const [showInfoBox, setShowInfoBox] = useState(false)
     const [cityState, setCityState] = useState()
     const [searchPoint, setSearchPoint] = useState()
+    setIsDriver(true)
     
     
 
