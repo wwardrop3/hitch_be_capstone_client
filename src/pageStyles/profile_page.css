@@ -17,3 +17,8 @@
 .profile-image{
     border-radius: 100%;
 }
+
+.trip-list-trip-info{
+    border: 3px solid black;
+    margin: 3%;
+}

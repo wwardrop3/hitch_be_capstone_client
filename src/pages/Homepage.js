@@ -40,11 +40,11 @@ export const HomePage = ({isDriver}) => {
         },[searchPoint]
     )
     
- 
+    // isDriver ? get_all_passenger_trips(searchPoint.lat, searchPoint.lng) :
 
     useEffect(
         () => {
-            isDriver ? get_all_passenger_trips(searchPoint.lat, searchPoint.lng) : get_all_driver_trips(searchPoint.lat, searchPoint.lng)
+            get_all_driver_trips(searchPoint.lat, searchPoint.lng)
             .then(
                 (response) => {
                     setTrips(response)}

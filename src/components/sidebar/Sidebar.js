@@ -14,9 +14,11 @@ export const Sidebar = ({member, isDriver, setIsDriver}) => {
                     }
                 }>
                 <img className="profile-icon" src={member?.profile_image_url}/>
-            </div>
+            
 
-            <div className="notifications">RIDE REQUESTS</div>
+            <div className="notifications">Profile</div>
+
+            </div>
             
     
             
@@ -51,9 +53,9 @@ export const Sidebar = ({member, isDriver, setIsDriver}) => {
                     
                 </table>
                 
-                <div className="user-mode">
+                {/* <div className="user-mode">
                     {isDriver ? <h5>Driver Mode</h5> : <h5>Passenger Mode</h5> }
-                </div>
+                </div> */}
                 
              
            

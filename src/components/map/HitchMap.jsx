@@ -26,16 +26,16 @@ const colors = {
     6: "red"
 }
 
-const getRandomIntInclusive = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-  }
+// const getRandomIntInclusive = (min, max) => {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+//   }
 
 const lineOptions = {
     strokeColor: Math.randomI,
     strokeOpacity: 0.8,
-    strokeWeight: 2,
+    strokeWeight: 4,
     fillColor: '#FF0000',
     fillOpacity: 0.35,
     clickable: false,
@@ -91,9 +91,6 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
         )
     }
 }
-const onLoad2 = polyline => {
-    console.log('polyline: ', polyline)
-  };
 
     return (
         <>
@@ -118,12 +115,11 @@ const onLoad2 = polyline => {
                                     
                                     <>
                                     <Polyline
-                                        onLoad={onLoad2}
                                         path={trip?.path_points}
                                         options={{
-                                            strokeColor: colors[getRandomIntInclusive(1,6)],
+                                            strokeColor: colors[1],
                                             strokeOpacity: 0.8,
-                                            strokeWeight: 2,
+                                            strokeWeight: 4,
                                             fillColor: '#FF0000',
                                             fillOpacity: 0.35,
                                             clickable: false,

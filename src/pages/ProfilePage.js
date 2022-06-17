@@ -23,6 +23,8 @@ export const ProfilePage = () => {
     )
 
 
+
+
     return (
         <>
             
@@ -34,6 +36,7 @@ export const ProfilePage = () => {
 
                     <img className="profile-image" src={member?.profile_image_url} />
                     <h2>{member?.user.first_name}</h2>
+                    <h3>{member?.bio}</h3>
                     <button
                                 onClick={
                                     () => {
@@ -54,25 +57,10 @@ export const ProfilePage = () => {
 
                     <h4>Quick Stats</h4>
 
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Avg Rating</th>
-                                <th># of Ratings</th>
-                            </tr>
-
-                            <tr>
-                                <th>Total Trips</th>
-                                <th>Total Miles</th>
-                            </tr>
-
-                            <tr>
-                                <th># of Passengers</th>
-                                <th>Total Travel Time</th>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                   <div>
+                        <p>Avg Rating: {member?.avg_rating}</p>
+                        <p>Number of Ratings: {member?.total_ratings}</p>
+                   </div>
 
                 </div>
 
@@ -91,7 +79,7 @@ export const ProfilePage = () => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <th colSpan={3}>{trip.driver.user['first_name']}</th>
+                                        <th colSpan={3}>{trip?.driver.user['first_name']}</th>
                                     </tr>
                                     <tr>
                                         <td>Seats: {trip.seats}</td>
@@ -106,7 +94,7 @@ export const ProfilePage = () => {
 
             
                             
-                        </div>
+                        
 
                         <div className="trip-list-trip-dates">
                             <table>
@@ -116,16 +104,45 @@ export const ProfilePage = () => {
                                         <td>{new Date(trip.start_date).toDateString()}</td>
                                     </tr>
 
+                                    <tr>
+                                        <th>Status</th>
+                                        <td>{trip.completed ? "Completed" : "Not Completed"}</td>
+                                    </tr>
+
                                 </tbody>
                             </table>
                             
                         </div>
+
+                        {/* {trip?.is_requested ? 
+                        <div>
+                            <button
+                            onClick={
+                                () => {
+                                    approve_passenger()
+                                }
+                            }>Approve Passenger</button>
+                        </div>
+                        
+                    
+                    :
+                    <button
+                    onClick={
+                        () => {
+                            reject_passenger()
+                        }
+                    }
+                    >Reject Request</button>
+                
+                } */}
+                </div>
                         </Link>
                         
                         </>
                     )
                 })}
                 </div>
+                
 
 
                 <div className="driver-trips">
@@ -140,10 +157,10 @@ export const ProfilePage = () => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <th colSpan={3}>{trip.driver?.user['first_name']}</th>
+                                       
                                     </tr>
                                     <tr>
-                                        <td>Seats: {trip.seats}</td>
+                                    
                                         <td>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</td>
                                         <td>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </td>
                                     
@@ -155,7 +172,7 @@ export const ProfilePage = () => {
 
             
                             
-                        </div>
+                        
 
                         <div className="trip-list-trip-dates">
                             <table>
@@ -165,9 +182,15 @@ export const ProfilePage = () => {
                                         <td>{new Date(trip.start_date).toDateString()}</td>
                                     </tr>
 
+                                    {/* <tr>
+                                        <th>Status</th>
+                                        <td>{trip.completed}</td>
+                                    </tr> */}
+
                                 </tbody>
                             </table>
                             
+                        </div>
                         </div>
                         </Link>
                         

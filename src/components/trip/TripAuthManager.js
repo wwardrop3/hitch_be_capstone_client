@@ -115,3 +115,16 @@ export const get_tags = () => {
         }
     }).then(res => res.json())
 }
+
+
+export const rate_driver = (rating) => {
+    return fetch(`${host}/driver_trip_ratings`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(rating)
+    })
+}
+
