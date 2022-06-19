@@ -69,6 +69,17 @@ export const update_driver_trip = (driver_trip) => {
     })
 }
 
+export const update_passenger_trip = (passenger_trip) => {
+    return fetch(`${host}/passenger_trips/${passenger_trip.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(passenger_trip)
+        
+    })
+}
 
 export const sign_up_passenger= (driver_trip) => {
     return fetch(`${host}/driver_trips/${driver_trip.id}/sign_up_passenger`, {
@@ -127,4 +138,6 @@ export const rate_driver = (rating) => {
         body: JSON.stringify(rating)
     })
 }
+
+
 

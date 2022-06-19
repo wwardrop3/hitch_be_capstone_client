@@ -53,9 +53,9 @@ export const Sidebar = ({member, isDriver, setIsDriver}) => {
                     
                 </table>
                 
-                {/* <div className="user-mode">
+                <div className="user-mode">
                     {isDriver ? <h5>Driver Mode</h5> : <h5>Passenger Mode</h5> }
-                </div> */}
+                </div>
                 
              
            

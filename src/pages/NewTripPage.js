@@ -19,12 +19,10 @@ import { Link } from "react-router-dom";
 /*global google*/
 const google = window.google = window.google ? window.google : {}
 
-export const NewTripPage = ({isDriver, setIsDriver, refresh, setRefresh, mapRef, setMapRef, tempTrip, setTempTrip, origin, setOrigin, destination, setDestination}) => {
+export const NewTripPage = ({isDriver, setIsDriver, refresh, setRefresh, mapRef, setMapRef, tempTrip, setTempTrip, origin, setOrigin, destination, setDestination, originPlace, setOriginPlace, destinationPlace, setDestinationPlace}) => {
     const [directions, setDirections] = useState()
     const [showInfoBox, setShowInfoBox] = useState(false)
-    const [cityState, setCityState] = useState()
     const [searchPoint, setSearchPoint] = useState()
-    setIsDriver(true)
     
     
 
@@ -63,7 +61,7 @@ export const NewTripPage = ({isDriver, setIsDriver, refresh, setRefresh, mapRef,
          {isDriver ? <h1>New Driver Trip</h1> : <h1>New Passenger Trip</h1>}
             
             <div className="homepage-trip-list">
-                <CreateTrip isDriver={isDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} />
+                <CreateTrip isDriver={isDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} originPlace={originPlace} setOriginPlace={setOriginPlace} destinationPlace={destinationPlace} setDestinationPlace={setDestinationPlace} />
             </div>
 
             {/* <div className="homepage-map-container">

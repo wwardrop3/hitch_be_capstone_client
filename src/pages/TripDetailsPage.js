@@ -18,6 +18,9 @@ export const TripDetailsPage = () => {
     console.log('polyline: ', polyline)
     };
 
+
+    //WHEN VIEWING PASSENGER TRIP DETAIL, MAP OUT ALL RECOMMENDED TRIPS AS WELL
+
     useEffect(
         () => {
             getDriverTrip(driverTripId)

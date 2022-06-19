@@ -16,7 +16,7 @@ import { UserTypeSelectPage } from "./pages/UserTypeSelectPage";
 
 
 const openNav = () => {
-    document.getElementById("sidebar-content").style.width = "10%";
+    document.getElementById("sidebar-content").style.width = "5%";
 
 }
 
@@ -29,6 +29,8 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
     const [member, setMember] = useState()
     const [origin, setOrigin] = useState()
     const [destination, setDestination] = useState()
+    const [originPlace, setOriginPlace] = useState()
+    const [destinationPlace, setDestinationPlace]= useState()
     
 
     useEffect(
@@ -45,7 +47,9 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
     const [tempTrip, setTempTrip] = useState(
         {
             origin: origin,
+            origin_place: originPlace,
             destination: destination,
+            destination_place: destinationPlace,
             start_date: "",
             detour_radius: "",
             trip_summary: "",
@@ -94,12 +98,12 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
                 </Route>
 
                 <Route exact path = "/trip/new/passenger">
-                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} refresh ={refresh} setRefresh={setRefresh}/>
+                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} originPlace={originPlace} setOriginPlace={setOriginPlace} destination={destination} setOrigin={setOrigin} setDestination={setDestination} destinationPlace={destinationPlace} setDestinationPlace={setDestinationPlace} refresh ={refresh} setRefresh={setRefresh}/>
                 </Route>
 
 
                 <Route exact path = "/trip/new/driver">
-                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} refresh ={refresh} setRefresh={setRefresh}/>
+                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} originPlace={originPlace} setOriginPlace={setOriginPlace} destination={destination} setOrigin={setOrigin} setDestination={setDestination} destinationPlace={destinationPlace} setDestinationPlace={setDestinationPlace} refresh ={refresh} setRefresh={setRefresh}/>
                 </Route>
 
                 <Route exact path = "/trips/:driverTripId(\d+)">

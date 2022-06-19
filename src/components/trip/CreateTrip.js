@@ -17,7 +17,7 @@ const google = window.google = window.google ? window.google : {}
   
 
 
-export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDestination, origin, setOrigin}) => {
+export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDestination, origin, setOrigin, originPlace, setOriginPlace, destinationPlace, setDestinationPlace}) => {
     const history = useHistory()
 
     const [checkedState, setCheckedState] = useState({})
@@ -85,6 +85,8 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
         e.preventDefault()
         tempTrip.origin = origin
         tempTrip.destination = destination
+        tempTrip.origin_place = originPlace
+        tempTrip.destination_place = destinationPlace
         // transferChecks()
         // isDriver ?
         create_new_driver_trip(tempTrip).then(
@@ -139,6 +141,8 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                         <Places
                         searchPoint={origin}
                         setSearchPoint={setOrigin}
+                        place={originPlace}
+                        setPlace={setOriginPlace}
                         />
                     </div>
 
@@ -152,6 +156,8 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                         <Places
                         searchPoint={destination}
                         setSearchPoint={setDestination}
+                        place={destinationPlace}
+                        setPlace={setDestinationPlace}
                         />
                     </div>
                 

@@ -67,9 +67,10 @@ export const ProfilePage = () => {
             </div>
 
             <div className="profile-page-column-2">
-                <div className="driver-trips">
-
                 <h2>Driver Trips</h2>
+                <div className="trips">
+
+               
 
                 {member?.driver_trips.map(trip => {
                     return(
@@ -144,11 +145,10 @@ export const ProfilePage = () => {
                 </div>
                 
 
-
-                <div className="driver-trips">
-
                 <h2>Passenger Trips</h2>
+                <div className="trips">
 
+               
                 {member?.passenger_trips.map(trip => {
                     return(
                         <>

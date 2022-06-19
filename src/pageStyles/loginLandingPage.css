@@ -31,7 +31,13 @@
 
 
 .auth-forms{
+    color: white;
     position: fixed;
     display: flex;
     bottom: 20%;
+}
+
+.label{
+    color: white;
+    text-shadow: 1px 1px black
 }

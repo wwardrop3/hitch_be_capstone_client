@@ -3,22 +3,29 @@
 .profile-page-container{
     display: flex;
     width: 100%;
+    justify-content: space-evenly;
 }
 
 .profile-page-column-1{
-    width: 40%
+    width: 30%;
 }
 
 .profile-page-column-2{
-    width: 60%
+    width: 50%;
 }
 
 
 .profile-image{
     border-radius: 100%;
+    aspect-ratio: 1/1;
 }
 
 .trip-list-trip-info{
     border: 3px solid black;
     margin: 3%;
+}
+
+.trips{
+    overflow: scroll;
+    height: 40vh;
 }

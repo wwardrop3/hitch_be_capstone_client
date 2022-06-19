@@ -1,0 +1,31 @@
+.messages-container{
+    width: 100vw;
+    display: flex;
+
+}
+
+.trip-list-column{
+    width: 30%;
+}
+
+
+.trip-messages-column{
+    width: 30%;
+}
+
+.message-details-column{
+    width: 30%;
+}
+
+.list-message-container{
+    display: flex;
+    flex-direction: column;
+    border: 3px black solid;
+}
+
+.list-trip-container{
+    display: flex;
+    border: 3px black solid;
+}
+
+

@@ -28,6 +28,7 @@ tr{
     align-items: center;
     background-color: white;
     border-radius: 100%;
+    aspect-ratio: 1/1;
     
 		
 }

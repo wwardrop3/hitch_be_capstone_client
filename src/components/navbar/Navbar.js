@@ -27,7 +27,7 @@ export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setSh
    
             <img className="nav-title-logo" src="https://sat02pap002files.storage.live.com/y4me3HXQPkLDfZGzC_T73xcBJd5TZc7ny3eeim3h7sAaZYfZqXDuPgdRrUAacktukr6CC_NrSri5x-ezKyFq8YHG6fFxaGHPaHvelYvGsBSElTcbxJyPTUhpooznvpNFku7ZZoVc7g43eyVKTk2wC5B8n0idoT1IXZNiGs5Y7LSUlJeP4VY_7PLxUoJuBjc4vbV?width=1008&height=449&cropmode=none"/>
 
-            {/* <div className="type-toggle">
+            <div className="type-toggle">
                 <div class="switch-button">
                     <input class="switch-button-checkbox" type="checkbox" 
                     onClick={
@@ -41,7 +41,7 @@ export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setSh
                             ></input>
                     <label class="switch-button-label" for=""><span class="switch-button-label-span">Driver</span></label>
                 </div>
-            </div> */}
+            </div>
 
 
 

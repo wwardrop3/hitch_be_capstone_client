@@ -12,7 +12,7 @@ import {
 } from "@reach/combobox"
 import "@reach/combobox/styles.css"
 
-export const Places = ({setSearchPoint, searchPoint, refresh, setRefresh}) => {
+export const Places = ({setSearchPoint, searchPoint, place, setPlace, refresh, setRefresh}) => {
 
     const {
         ready, 
@@ -27,11 +27,13 @@ export const Places = ({setSearchPoint, searchPoint, refresh, setRefresh}) => {
         setValue(val, false)
         clearSuggestions()
         const results = await getGeocode({address: val})
+        const placeResult = results[0].formatted_address
         const {lat, lng} = getLatLng(results[0])
         const copy = {...searchPoint}
         copy.lat = lat
         copy.lng = lng
         setSearchPoint(copy)
+        setPlace(placeResult)
 
 
 
