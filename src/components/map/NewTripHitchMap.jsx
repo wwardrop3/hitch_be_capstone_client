@@ -53,6 +53,7 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
         mapId: "919771f94d285faa",
         disableDefaultUI: true,
         clickableIcons: false,
+        scrollwheel: true
         }))
     
     const [directions, setDirections] = useState()
@@ -80,11 +81,13 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                     <div className="map">
                         <GoogleMap 
                             zoom={11} 
+                            zoomControl="true"
                             // original search point based on location
                             center={searchPoint} 
                             mapContainerClassName="map" 
                             options={options}
                             onLoad={onLoad}
+                            
                            
                             
                             >
@@ -221,13 +224,13 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                 position={origin}
                                 key={parseFloat(origin.lat)} 
                                 icon={{
-                                    path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
-                                    fillColor: "red",
-                                    fillOpacity: .6,
+                                    path: "M19 10c0 3.976-7 11-7 11s-7-7.024-7-11 3.134-7 7-7 7 3.024 7 7zM9 10h3m3 0h-3m0 0V7m0 3v3",
+                                    fillColor: "lightblue",
+                                    fillOpacity: .8,
                                     strokeWeight: 1,
-                                    scale: 2,
+                                    scale: 3,
                                     strokeColor: "black",
-                                    anchor: new google.maps.Point(7,15)
+                                    anchor: new google.maps.Point(10,19)
                                 }}
                                
                             
@@ -244,13 +247,13 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                 position={destination}
                                 key={parseFloat(destination.lat)} 
                                 icon={{
-                                    path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
-                                    fillColor: "red",
-                                    fillOpacity: .6,
+                                    path: "M19 10c0 3.976-7 11-7 11s-7-7.024-7-11 3.134-7 7-7 7 3.024 7 7zM9 10h3m3 0h-3m0 0V7m0 3v3",
+                                    fillColor: "pink",
+                                    fillOpacity: .8,
                                     strokeWeight: 1,
-                                    scale: 2,
+                                    scale: 3,
                                     strokeColor: "black",
-                                    anchor: new google.maps.Point(7,15)
+                                    anchor: new google.maps.Point(10,19)
                                 }}
                                
                             

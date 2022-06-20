@@ -30,6 +30,27 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
     const [member, setMember] = useState()
     const [highlight, setHighlight] = useState()
     const [pathHighlight, setPathHighlight] = useState()
+
+    const [tempTrip, setTempTrip] = useState(
+        {
+            origin: "",
+            origin_place: "",
+            destination: "",
+            destination_place: "",
+            start_date: "",
+            detour_radius: "",
+            trip_summary: "",
+            seats: 1,
+            completion_date: "",
+            creation_date: "",
+            completed: false,
+            path: "",
+            trip_distance: "",
+            expected_travel_time: "",
+            tags:""
+
+        }
+    )
     
 
     useEffect(
@@ -75,13 +96,13 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
                 
                 
                 <Route exact path = {"/home"}>
-                    <HomePage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
+                    <HomePage tempTrip={tempTrip} searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
 
 
                 <Route exact path = "/trip/new">
-                    <NewTripPage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
+                    <NewTripPage tempTrip={tempTrip} setTempTrip={setTempTrip} searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
                 <Route exact path = "/driver_trips/:driverTripId(\d+)">

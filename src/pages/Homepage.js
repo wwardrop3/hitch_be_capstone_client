@@ -12,7 +12,7 @@ import "../pageStyles/homepage.css"
 // focus trip location
 
 
-export const HomePage = ({isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
+export const HomePage = ({tempTrip, isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
     
     const [directions, setDirections] = useState()
     const [showInfoBox, setShowInfoBox] = useState(false)
@@ -65,7 +65,7 @@ export const HomePage = ({isDriver, highlight, setHighlight, pathHighlight, setP
         <div className="homepage-container">
         
             <div className="homepage-trip-list">
-                <TripList trips = {trips} refresh = {refresh} setRefresh = {setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver}/>    
+                <TripList tempTrip={tempTrip} trips = {trips} refresh = {refresh} setRefresh = {setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver}/>    
             </div>
 
             <div className="location-search">

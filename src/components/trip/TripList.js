@@ -3,7 +3,7 @@ import "./trip.css"
 
 
 
-export const TripList = ({trips, refresh, setRefresh, highlight, setHighlight, pathHighlight, setPathHighlight, isDriver}) => {
+export const TripList = ({tempTrip, trips, refresh, setRefresh, highlight, setHighlight, pathHighlight, setPathHighlight, isDriver}) => {
 
    
 
@@ -14,7 +14,7 @@ export const TripList = ({trips, refresh, setRefresh, highlight, setHighlight, p
             trips ? trips.map(trip => {
                 return (
                     
-                    <TripListTrip trip = {trip} refresh = {refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight={setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver} />
+                    <TripListTrip tempTrip={tempTrip} trip = {trip} refresh = {refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight={setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver} />
                   
                 )
             

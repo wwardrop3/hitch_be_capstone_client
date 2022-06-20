@@ -105,6 +105,7 @@
     align-items: right;
     justify-content: right;
     flex-direction: column;
+    height: 100vh;
 
 
 }

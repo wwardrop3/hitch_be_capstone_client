@@ -21,7 +21,7 @@ import { CreatePassengerTrip } from "../components/trip/CreatePassengerTrip";
 /*global google*/
 const google = window.google = window.google ? window.google : {}
 
-export const NewTripPage = ({isDriver, setIsDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
+export const NewTripPage = ({tempTrip, setTempTrip, isDriver, setIsDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
     const [directions, setDirections] = useState()
     const [showInfoBox, setShowInfoBox] = useState(false)
     const userLocation = useMemo(()=> ({lat: parseFloat(localStorage?.getItem("lat")), lng: parseFloat(localStorage?.getItem("lng"))}),[])
@@ -44,25 +44,7 @@ export const NewTripPage = ({isDriver, setIsDriver, highlight, setHighlight, pat
         libraries: ['places']
     })
 
-    const [tempTrip, setTempTrip] = useState(
-        {
-            origin: origin,
-            origin_place: originPlace,
-            destination: destination,
-            destination_place: destinationPlace,
-            start_date: "",
-            detour_radius: "",
-            trip_summary: "",
-            seats: 1,
-            completion_date: "",
-            completed: false,
-            path: "",
-            trip_distance: "",
-            expected_travel_time: "",
-            tags:""
-
-        }
-    )
+    
 
     useEffect(
         () => {

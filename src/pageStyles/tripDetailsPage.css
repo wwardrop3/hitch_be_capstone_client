@@ -12,6 +12,7 @@
 
 .trip-content{
     display: flex;
+    flex-direction: column;
     width: 40%;
     height: 100%;
 }

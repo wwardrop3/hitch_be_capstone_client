@@ -59,7 +59,7 @@ export const UserTypeSelectPage = ({isDriver, setIsDriver}) => {
 
                 <Link
                 className="user-type"
-                to= "/trip/new/driver"
+                to= "/trip/new"
                 // onClick = {
                 //     () => {
                 //         setIsDriver(true)

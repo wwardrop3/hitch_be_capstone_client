@@ -67,7 +67,6 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
                             setRecTrips(response)
                         }
                     )
-                    debugger
 
                 }
             }
@@ -77,7 +76,7 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
     useEffect(
         () => {
             fetchDirections()
-        }, [destination]
+        }, [destinationPlace]
     )
     
 
@@ -199,7 +198,7 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
 
                     <div className="trip-list">
                         <h4>Recommended Trips</h4>
-                        <TripList trips = {recTrips} refresh = {refresh} setRefresh = {setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver}/>    
+                        <TripList trips = {recTrips} refresh = {refresh} setRefresh = {setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} />    
 
                     </div>
 

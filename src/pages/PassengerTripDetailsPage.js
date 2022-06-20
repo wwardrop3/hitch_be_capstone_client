@@ -80,6 +80,10 @@ export const PassengerTripDetailsPage = ({isDriver, setIsDriver}) => {
                         {trip?.passenger.user.first_name}
                     </div>
 
+                    {/* <div className="trip-info">
+                        {trip?.driver_trips[0].driver.user.first_name}
+                    </div> */}
+
                     <div className="trip-info">
                         {trip?.trip_summary}
                     </div>
@@ -93,7 +97,8 @@ export const PassengerTripDetailsPage = ({isDriver, setIsDriver}) => {
             </div>
 
             <div className="trip-map">
-                <LoadScript>
+                <LoadScript
+                    googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
                 <GoogleMap
                     mapContainerClassName="map" 
                     center={trip?.origin}

@@ -96,7 +96,7 @@ export const MessagesPage = () => {
 
             <div className="trip-list-column">
 
-                <div className="trip-list">
+                <div className="messages-trip-list">
                     Driver Trips
                     {member?.driver_trips.map(driver_trip => {
                     return (
@@ -112,8 +112,8 @@ export const MessagesPage = () => {
                         }>
                             
                             <div className="list-driver_trip-header">
-                                <h4>{driver_trip.sender?.id}</h4>
-                                <div>{driver_trip.creation_date}</div>
+                                <h4>{driver_trip.origin_place} to {driver_trip.destination_place}</h4>
+                                <div>{new Date(driver_trip.start_date).toDateString()}</div>
                             </div>
                            
 
@@ -125,7 +125,7 @@ export const MessagesPage = () => {
 
                 </div>
 
-                <div className="trip-list">
+                <div className="messages-trip-list">
                     Passenger Trips
                     {member?.passenger_trips.map(passenger_trip => {
                     return (
@@ -142,7 +142,7 @@ export const MessagesPage = () => {
                             {passenger_trip.is_approved ? <h6>Approved</h6>: <h6>Pending</h6>}
                             <div className="list-passenger_trip-header">
                                 <h4>{passenger_trip.sender?.id}</h4>
-                                <div>{passenger_trip.creation_date}</div>
+                                <div>{new Date(passenger_trip.start_date).toDateString()}</div>
                             </div>
                            
 
@@ -186,7 +186,7 @@ export const MessagesPage = () => {
                                 <p>TO</p> 
                                 <h4>{message.driver_trip.destination_place}</h4>
                                 <h4>{message.sender.id}</h4>
-                                <div>{message.creation_date}</div>
+                                <div>{new Date(message.creation_date).toDateString()}</div>
                             </div>
                            
 
