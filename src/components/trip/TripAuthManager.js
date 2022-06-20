@@ -141,3 +141,19 @@ export const rate_driver = (rating) => {
 
 
 
+export const delete_passenger_trip = (id) => {
+    return fetch(`${host}/passenger_trips/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+}
+
+export const get_passenger_trip = (id) => {
+    return fetch(`${host}/passenger_trips/${id}`,{
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+}})
+    .then(res => res.json())
+}

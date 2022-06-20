@@ -9,6 +9,7 @@ import { LoginLandingPage } from "./pages/LoginLandingPage";
 import { MessagesPage } from "./pages/MessagesPage";
 import { NewTripPage } from "./pages/NewTripPage";
 import { get_member } from "./pages/PagesAuthManager";
+import { PassengerTripDetailsPage } from "./pages/PassengerTripDetailsPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { TripDetailsPage } from "./pages/TripDetailsPage";
 import { UserTypeSelectPage } from "./pages/UserTypeSelectPage";
@@ -83,12 +84,16 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
                     <NewTripPage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
-                <Route exact path = "/trips/:driverTripId(\d+)">
-                    <TripDetailsPage refresh ={refresh} setRefresh={setRefresh}/>
+                <Route exact path = "/driver_trips/:driverTripId(\d+)">
+                    <TripDetailsPage refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} />
+                </Route>
+
+                <Route exact path = "/passenger_trips/:passengerTripId(\d+)">
+                    <PassengerTripDetailsPage refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} />
                 </Route>
 
                 <Route exact path = "/profile">
-                    <ProfilePage />
+                    <ProfilePage isDriver={isDriver} setIsDriver={setIsDriver} />
                 </Route>
                 
                 <Route exact path = "/messages">

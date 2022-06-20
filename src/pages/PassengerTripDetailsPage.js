@@ -1,29 +1,26 @@
 import { GoogleMap, LoadScript, Marker, Polyline } from "@react-google-maps/api"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getDriverTrip } from "../components/trip/TripAuthManager"
+import { get_passenger_trip } from "../components/trip/TripAuthManager"
 import "../pageStyles/tripDetailsPage.css"
 
 
 
-export const TripDetailsPage = ({isDriver, setIsDriver}) => {
+export const PassengerTripDetailsPage = ({isDriver, setIsDriver}) => {
     const [trip, setTrip] = useState()
     const [mapRef, setMapRef] = useState()
 
-    const { driverTripId } = useParams()
+    const { passengerTripId } = useParams()
     const onLoad = useCallback(map => (setMapRef(map)))
 
 
-    const onLoad2 = polyline => {
-    console.log('polyline: ', polyline)
-    };
 
 
     //WHEN VIEWING PASSENGER TRIP DETAIL, MAP OUT ALL RECOMMENDED TRIPS AS WELL
 
     useEffect(
         () => {
-        getDriverTrip(driverTripId)
+        get_passenger_trip(passengerTripId)
         .then(
             (response) => {
                 setTrip(response)
@@ -80,7 +77,7 @@ export const TripDetailsPage = ({isDriver, setIsDriver}) => {
                     </div>
 
                     <div className="trip-info">
-                        {trip?.driver.user.first_name}
+                        {trip?.passenger.user.first_name}
                     </div>
 
                     <div className="trip-info">
@@ -105,7 +102,7 @@ export const TripDetailsPage = ({isDriver, setIsDriver}) => {
                     onLoad={onLoad}
                 >
                     <Polyline
-                                        onLoad={onLoad2}
+                                 
                                         path={trip?.path_points}
                                         options={lineOptions}
                                     />

@@ -59,7 +59,7 @@ const lineOptions = {
     
 
 
-export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
+export const HitchMap = ({passengerTrips, onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
     const options = useMemo(
         () => ({
         mapId: "919771f94d285faa",
@@ -119,6 +119,80 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
                             >
                    {trips ?
                         trips?.map((trip) => (
+                                    
+                                    <>
+                                    <Polyline
+                                        path={trip?.path_points}
+                                        options={{
+                                            strokeColor: isSelected(trip.id, pathHighlight)[1],
+                                            strokeOpacity: isSelected(trip.id, pathHighlight)[2],
+                                            strokeWeight: isSelected(trip.id, pathHighlight)[3],
+                                            fillColor: '#FF0000',
+                                            fillOpacity: 0.35,
+                                            clickable: false,
+                                            draggable: false,
+                                            editable: false,
+                                            visible: true,
+                                            radius: 30000,
+                                            zIndex: 1
+                                          }}
+                                    />
+                                    
+                                    
+                                    <Marker 
+                                    key={parseFloat(trip?.origin.lat)} 
+                                    position={trip?.origin}
+                                    icon={{
+                                        path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                        fillColor: "green",
+                                        fillOpacity: .6,
+                                        strokeWeight: 1,
+                                        scale: 2,
+                                        strokeColor: "black",
+                                        anchor: new google.maps.Point(7,15)
+                                    }}
+                                    onClick = {
+                                        () => {
+                                            
+                                            setShowInfoBox(!showInfoBox)
+                                            setSelectedPoint(trip)
+                                            // fetchDirections(trip)
+                                           
+                                        }}
+                                    
+                                    />
+
+                                <Marker 
+                                    key={parseFloat(trip.destination?.lat)} 
+                                    position={trip?.destination}
+                                    icon={{
+                                        path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                        fillColor: "red",
+                                        fillOpacity: .6,
+                                        strokeWeight: 1,
+                                        scale: 2,
+                                        strokeColor: "black",
+                                        anchor: new google.maps.Point(7,15)
+                                    }}
+                                    onClick = {
+                                        () => {
+                                            
+                                            setShowInfoBox(!showInfoBox)
+                                            setSelectedPoint(trip)
+                                            // fetchDirections(trip)
+                                           
+                                        }}
+                                    
+                                    />
+
+                                    {/* <Circle center={trip?.origin} radius={trip?.pick_up_radius * 1609} /> */}
+
+                                    </>
+                                    )
+                        ):""}
+
+{passengerTrips ?
+                        passengerTrips?.map((trip) => (
                                     
                                     <>
                                     <Polyline

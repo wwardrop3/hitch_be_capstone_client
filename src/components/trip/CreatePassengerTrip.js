@@ -25,31 +25,49 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
    
     const history = useHistory()
 
-    const fetchDirections = () => {
-        debugger
-        
-        if(searchPoint != undefined){
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        tempTrip.origin = searchPoint
+        tempTrip.destination = destination
+        tempTrip.origin_place = originPlace
+        tempTrip.destination_place = destinationPlace
+        tempTrip.is_approved = false
+        // transferChecks()
+        // isDriver ?
+        create_new_passenger_trip(tempTrip).then(
+            () => {
+                history.push("/home")
+            })
+        // :
+        //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
+    }
 
+
+    const fetchDirections = () => {
+        
         const service = new google.maps.DirectionsService();
         service.route(
             {
-                origin: origin,
+                origin: searchPoint,
                 destination: destination,
                 travelMode: google.maps.TravelMode.DRIVING
             },
             (result, status) => {
                 if (status === "OK" && result) {
-                    setDirections(result)
+                    const copy = {...tempTrip}
+                    copy.path = result.routes[0].overview_polyline
+                    copy.trip_distance = result.routes[0].legs[0].distance.value
+                    copy.expected_travel_time = result.routes[0].legs[0].duration.value
+                    setTempTrip(copy)
                 }
             }
         )
     }
-}
 
     useEffect(
         () => {
             fetchDirections()
-        },[destination]
+        }, [destination]
     )
     
     // useEffect(
@@ -75,21 +93,7 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
 
 
     
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        tempTrip.origin = origin
-        tempTrip.destination = destination
-        tempTrip.origin_place = originPlace
-        tempTrip.destination_place = destinationPlace
-        // transferChecks()
-        // isDriver ?
-        create_new_passenger_trip(tempTrip).then(
-            () => {
-                history.push("/home")
-            })
-        // :
-        //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
-    }
+   
   
 
     const options = useMemo(

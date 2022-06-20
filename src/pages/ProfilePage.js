@@ -75,7 +75,7 @@ export const ProfilePage = () => {
                 {member?.driver_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/trips/${trip.id}`}>
+                        <Link to={`/driver_trips/${trip.id}`}>
                         <div className="trip-list-trip-info">
                             <table>
                                 <tbody>
@@ -152,7 +152,7 @@ export const ProfilePage = () => {
                 {member?.passenger_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/trips/${trip.id}`}>
+                        <Link to={`/passenger_trips/${trip.id}`}>
                         <div className="trip-list-trip-info">
                             <table>
                                 <tbody>

@@ -92,7 +92,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
 
             <div className="image-container">
 
-                <img className="trip-list-trip-profile-picture" src={trip.driver.profile_image_url}/>
+                <img className="trip-list-trip-profile-picture" src={trip.driver?.profile_image_url}/>
 
             </div>
 
@@ -103,7 +103,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
                     <table>
                         <tbody>
                             <tr>
-                                <th colSpan={3}>{trip.driver.user['first_name']}</th>
+                                <th colSpan={3}>{trip.driver?.user['first_name']}</th>
                             </tr>
                             <tr>
                                 <td>Seats: {trip.seats}</td>

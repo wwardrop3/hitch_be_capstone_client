@@ -49,6 +49,7 @@ export const HomePage = ({isDriver, highlight, setHighlight, pathHighlight, setP
                     setTrips(response)}
             )
         },[refresh, searchPoint, isDriver]
+
         
     
     )
