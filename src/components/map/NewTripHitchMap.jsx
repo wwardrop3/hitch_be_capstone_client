@@ -46,20 +46,8 @@ const lineOptions = {
     zIndex: 1
   };
 
-// const clusterStyles = 
-//     [{
-//         height: 50,
-//         width: 50, 
-//         opacity: 1,
-//         textColor: "black",
-//         scale: 100,
-//         fontSize: 9,
 
-//     }]
-    
-
-
-export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
+export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, trips, setShowInfoBox, showInfoBox, setSelectedPoint, selectedPoint, searchPoint, isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
     const options = useMemo(
         () => ({
         mapId: "919771f94d285faa",
@@ -79,25 +67,7 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
     
 
 
-    const fetchDirections = () => {
-        
-        if(searchPoint != undefined){
-
-        const service = new google.maps.DirectionsService();
-        service.route(
-            {
-                origin: searchPoint,
-                destination: selectedPoint?.origin,
-                travelMode: google.maps.TravelMode.DRIVING
-            },
-            (result, status) => {
-                if (status === "OK" && result) {
-                    setDirections(result)
-                }
-            }
-        )
-    }
-}
+   
 
     return (
         <>
@@ -110,6 +80,7 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
                     <div className="map">
                         <GoogleMap 
                             zoom={11} 
+                            // original search point based on location
                             center={searchPoint} 
                             mapContainerClassName="map" 
                             options={options}
@@ -117,6 +88,7 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
                            
                             
                             >
+                                {/* When the origin and destination are set, will return recommended driving trips */}
                    {trips ?
                         trips?.map((trip) => (
                                     
@@ -218,6 +190,7 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
                         
                         
                             :""}
+                            {/* this is the marker for the original search point */}
                             {searchPoint ?
                             <>
                             <Marker 
@@ -239,6 +212,53 @@ export const HitchMap = ({onLoad, trips, setShowInfoBox, showInfoBox, setSelecte
                        
                         </>
                         :""}
+
+                        {/* once the origin of the passenger trip is selected, going to plot the origin marker */}
+
+                        {origin?.lat ?
+                            <>
+                            <Marker 
+                                position={origin}
+                                key={parseFloat(origin.lat)} 
+                                icon={{
+                                    path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                    fillColor: "red",
+                                    fillOpacity: .6,
+                                    strokeWeight: 1,
+                                    scale: 2,
+                                    strokeColor: "black",
+                                    anchor: new google.maps.Point(7,15)
+                                }}
+                               
+                            
+                            />
+                       
+                        </>
+                        :""}
+
+                        {/* once the destination of the passenger trip is selected, plot the destination marker */}
+
+                        {destination?.lat ?
+                            <>
+                            <Marker 
+                                position={destination}
+                                key={parseFloat(destination.lat)} 
+                                icon={{
+                                    path: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                    fillColor: "red",
+                                    fillOpacity: .6,
+                                    strokeWeight: 1,
+                                    scale: 2,
+                                    strokeColor: "black",
+                                    anchor: new google.maps.Point(7,15)
+                                }}
+                               
+                            
+                            />
+                       
+                        </>
+                        :""}
+                                    
                                     
                                     
                                 

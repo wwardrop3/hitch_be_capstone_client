@@ -12,9 +12,9 @@ export const NewMessage = ({trip, refresh, setRefresh, showMessage, setShowMessa
     useEffect(
         () => {
             setMessage({
-                driver_trip: trip.driver_trip?.id,
-                passenger_trip: trip.driver_trip.passenger_trips[0]?.id,
-                receiver: trip.driver?.id,
+                driver_trip: trip.id,
+                passenger_trip: trip.passenger_trips[0]?.id,
+                receiver: trip.driver.id,
                 message_text: "",
                 is_read: false
             })

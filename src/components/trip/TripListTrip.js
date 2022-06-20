@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { create_new_message } from "../message/MessageAuthManager";
 import { NewMessage } from "../message/NewMessage";
 
-export const TripListTrip = ({trip, refresh, setRefresh}) => {
+export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathHighlight, highlight, setHighlight}) => {
 
     const [showRating, setShowRating]= useState(false)
     const [rating, setRating] = useState({})
@@ -56,7 +56,11 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
 
     }
 
-
+    const isSelected = (propertyId, highlightId) => {
+        if(highlightId === propertyId){
+            return "lightGreen"
+        }
+    }
     
      
         
@@ -66,7 +70,25 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
     return(
         <>    
         
-        <div className="trip-list-trip-container">
+        <div className="trip-list-trip-container" style={{backgroundColor: isSelected(trip.id, highlight)}}
+     
+        onMouseOver={
+            () => {
+                setPathHighlight(trip.id)
+                setHighlight(trip.id)
+            }
+        }
+        
+        onMouseOut ={
+            () => {
+                setPathHighlight("")
+                setHighlight("")
+            }
+            
+        }
+        
+        >
+            
 
             <div className="image-container">
 

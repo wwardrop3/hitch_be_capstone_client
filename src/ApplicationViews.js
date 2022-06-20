@@ -27,10 +27,8 @@ const closeNav= () => {
 
 export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, searchPoint, setSearchPoint}) => {
     const [member, setMember] = useState()
-    const [origin, setOrigin] = useState()
-    const [destination, setDestination] = useState()
-    const [originPlace, setOriginPlace] = useState()
-    const [destinationPlace, setDestinationPlace]= useState()
+    const [highlight, setHighlight] = useState()
+    const [pathHighlight, setPathHighlight] = useState()
     
 
     useEffect(
@@ -44,25 +42,7 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
         },[]
     )
 
-    const [tempTrip, setTempTrip] = useState(
-        {
-            origin: origin,
-            origin_place: originPlace,
-            destination: destination,
-            destination_place: destinationPlace,
-            start_date: "",
-            detour_radius: "",
-            trip_summary: "",
-            seats: 1,
-            completion_date: "",
-            completed: false,
-            path: "",
-            trip_distance: "",
-            expected_travel_time: "",
-            tags:""
-
-        }
-    )
+    
 
 
     
@@ -94,16 +74,13 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
                 
                 
                 <Route exact path = {"/home"}>
-                    <HomePage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} refresh ={refresh} setRefresh={setRefresh}/>
-                </Route>
-
-                <Route exact path = "/trip/new/passenger">
-                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} originPlace={originPlace} setOriginPlace={setOriginPlace} destination={destination} setOrigin={setOrigin} setDestination={setDestination} destinationPlace={destinationPlace} setDestinationPlace={setDestinationPlace} refresh ={refresh} setRefresh={setRefresh}/>
+                    <HomePage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
 
-                <Route exact path = "/trip/new/driver">
-                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} originPlace={originPlace} setOriginPlace={setOriginPlace} destination={destination} setOrigin={setOrigin} setDestination={setDestination} destinationPlace={destinationPlace} setDestinationPlace={setDestinationPlace} refresh ={refresh} setRefresh={setRefresh}/>
+
+                <Route exact path = "/trip/new">
+                    <NewTripPage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
                 <Route exact path = "/trips/:driverTripId(\d+)">
