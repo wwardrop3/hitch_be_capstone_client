@@ -98,7 +98,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
 
             
             <div className="trip-list-trip-content">
-            <Link to={`/trips/${trip.id}`}>
+            <Link to={`/driver_trips/${trip.id}`}>
                 <div className="trip-list-trip-info">
                     <table>
                         <tbody>

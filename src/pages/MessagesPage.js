@@ -41,14 +41,14 @@ export const MessagesPage = () => {
 
 
     const update_driver_trip_messages = (id) => {
-        const foundMessages = messages.filter(message => message.driver_trip.id == id)
+        const foundMessages = messages.filter(message => message?.driver_trip.id == id)
         setTripMessages(foundMessages)
-        setMessage({})
+   
 
     }
 
     const update_passenger_trip_messages = (id) => {
-        const foundMessages = messages.filter(message => message.passenger_trip.id == id)
+        const foundMessages = messages.filter(message => message?.passenger_trip.id == id)
         setTripMessages(foundMessages)
 
     }

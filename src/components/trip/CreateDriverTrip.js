@@ -70,21 +70,21 @@ export const CreateDriverTrip = ({tempTrip, setTempTrip, destination, setDestina
 
 
     
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        tempTrip.origin = origin
-        tempTrip.destination = destination
-        tempTrip.origin_place = originPlace
-        tempTrip.destination_place = destinationPlace
-        // transferChecks()
-        // isDriver ?
-        create_new_driver_trip(tempTrip).then(
-            () => {
-                history.push("/home")
-            })
-        // :
-        //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     tempTrip.origin = origin
+    //     tempTrip.destination = destination
+    //     tempTrip.origin_place = originPlace
+    //     tempTrip.destination_place = destinationPlace
+    //     // transferChecks()
+    //     // isDriver ?
+    //     create_new_driver_trip(tempTrip).then(
+    //         () => {
+    //             history.push("/home")
+    //         })
+    //     // :
+    //     //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
+    // }
 
 
     const fetchDirections = () => {
@@ -102,19 +102,25 @@ export const CreateDriverTrip = ({tempTrip, setTempTrip, destination, setDestina
                     copy.path = result.routes[0].overview_polyline
                     copy.trip_distance = result.routes[0].legs[0].distance.value
                     copy.expected_travel_time = result.routes[0].legs[0].duration.value
-                    
+                    copy.origin = origin
+                    copy.destination = destination
+                    copy.origin_place = originPlace
+                    copy.destination_place = destinationPlace
+                    copy.is_approved = false
                     setTempTrip(copy)
+                    create_new_driver_trip(copy)
+                    .then(
+                        (response) => {
+                            history.push("/home")
+                        }
+                    )
+
                 }
             }
         )
     }
 
-    useEffect(
-        () => {
-            fetchDirections()
-        }, [destination]
-    )
-
+ 
   
 
 
@@ -247,7 +253,7 @@ export const CreateDriverTrip = ({tempTrip, setTempTrip, destination, setDestina
                             <button className="button is-link" 
                             onClick={
                                 (evt) => {
-                                    handleSubmit(evt)
+                                    fetchDirections()
                                 }
                             }>Submit</button>
                         </div>

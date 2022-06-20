@@ -131,7 +131,7 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
                         </div>
 
       
-                    <div className="field">
+                    {/* <div className="field">
                         <label className="label">Trip Summary</label>
                         <div className="control">
                             <input className="input" type="text" 
@@ -143,7 +143,7 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
                                 }
                             }/>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="search-box">
                         <h3>Select Origin</h3>
                         {/* stores the lat/lng of office they chose, also want to move the map to that location */}
@@ -178,14 +178,13 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
                         <button className="button is-link" 
                         onClick={
                             (evt) => {
-                                handleSubmit(evt)
+                                // handleSubmit(evt)
+                                history.push("/home")
                             }
-                        }>Submit</button>
+                        }>Return Home to Search</button>
                     </div>
 
-                    <div className="control">
-                        <Link to="/login" className="button is-link is-light">Cancel</Link>
-                    </div>
+                    
                     
                 </div>
                
