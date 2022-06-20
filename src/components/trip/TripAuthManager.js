@@ -109,8 +109,8 @@ export const remove_passenger= (driver_trip) => {
 
 
 export const get_driver_trips_by_passenger_trip = (tempPassengerTrip) => {
-    return fetch(`${host}/passenger_trips/driver_trips_by_passenger_trip`, {
-        method: "GET",
+    return fetch(`${host}/driver_trips/get_driver_trips_by_passenger_trip`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("token")}`

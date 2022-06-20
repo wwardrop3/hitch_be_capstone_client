@@ -102,6 +102,7 @@ export const CreateDriverTrip = ({tempTrip, setTempTrip, destination, setDestina
                     copy.path = result.routes[0].overview_polyline
                     copy.trip_distance = result.routes[0].legs[0].distance.value
                     copy.expected_travel_time = result.routes[0].legs[0].duration.value
+                    
                     setTempTrip(copy)
                 }
             }

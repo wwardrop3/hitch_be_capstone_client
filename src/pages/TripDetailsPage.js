@@ -96,7 +96,8 @@ export const TripDetailsPage = ({isDriver, setIsDriver}) => {
             </div>
 
             <div className="trip-map">
-                <LoadScript>
+                <LoadScript
+                googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
                 <GoogleMap
                     mapContainerClassName="map" 
                     center={trip?.origin}
