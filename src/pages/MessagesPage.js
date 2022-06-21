@@ -41,7 +41,7 @@ export const MessagesPage = () => {
 
 
     const update_driver_trip_messages = (id) => {
-        const foundMessages = messages.filter(message => message?.driver_trip.id == id)
+        const foundMessages = messages.filter(message => message.driver_trip?.id == id)
         setTripMessages(foundMessages)
    
 
@@ -105,7 +105,7 @@ export const MessagesPage = () => {
                         onClick={
                             () => {
                             
-                                update_driver_trip_messages(driver_trip.id)
+                                update_driver_trip_messages(driver_trip?.id)
                                 setIsDriverTrip(true)
                                 setMessage("")
                             }
