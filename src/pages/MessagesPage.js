@@ -48,7 +48,7 @@ export const MessagesPage = () => {
     }
 
     const update_passenger_trip_messages = (id) => {
-        const foundMessages = messages.filter(message => message?.passenger_trip.id == id)
+        const foundMessages = messages.filter(message => message.passenger_trip?.id == id)
         setTripMessages(foundMessages)
 
     }
@@ -185,7 +185,7 @@ export const MessagesPage = () => {
                                 <h4>{message.driver_trip.origin_place}</h4> 
                                 <p>TO</p> 
                                 <h4>{message.driver_trip.destination_place}</h4>
-                                <h4>{message.sender.id}</h4>
+                                <h4>From {message.sender.user.first_name}</h4>
                                 <div>{new Date(message.creation_date).toDateString()}</div>
                             </div>
                            

@@ -64,7 +64,7 @@ export const CreatePassengerTrip = ({showInfoBox, setShowInfoBox, selectedPoint,
                     get_driver_trips_by_passenger_trip(copy)
                     .then(
                         (response) => {
-                            setRecTrips(response)
+                            setRecTrips(response.sort((a,b) => b.is_recommended - a.is_recommended))
                         }
                     )
 

@@ -58,11 +58,17 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
     
     const [directions, setDirections] = useState()
  
-    const isSelected = (propertyId, pathHighlight) => {
+    const isSelected = (propertyId, pathHighlight, trip) => {
         if(pathHighlight === propertyId){
             return [3,"red", 3, 4]
         } else {
-            return [2,"blue", .8, 2]
+            if (trip?.is_recommended == true){
+                return [2,"green", .8, 2]
+            }
+            else{
+                return [2,"blue", .8, 2]
+            }
+            
         }
     }
     
@@ -99,7 +105,7 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                     <Polyline
                                         path={trip?.path_points}
                                         options={{
-                                            strokeColor: isSelected(trip.id, pathHighlight)[1],
+                                            strokeColor: isSelected(trip.id, pathHighlight, trip)[1],
                                             strokeOpacity: isSelected(trip.id, pathHighlight)[2],
                                             strokeWeight: isSelected(trip.id, pathHighlight)[3],
                                             fillColor: '#FF0000',
@@ -230,7 +236,7 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                     strokeWeight: 1,
                                     scale: 3,
                                     strokeColor: "black",
-                                    anchor: new google.maps.Point(10,19)
+                                    anchor: new google.maps.Point(10,22)
                                 }}
                                
                             
@@ -253,7 +259,7 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                     strokeWeight: 1,
                                     scale: 3,
                                     strokeColor: "black",
-                                    anchor: new google.maps.Point(10,19)
+                                    anchor: new google.maps.Point(10,22)
                                 }}
                                
                             

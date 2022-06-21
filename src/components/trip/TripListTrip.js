@@ -56,9 +56,12 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
 
     }
 
-    const isSelected = (propertyId, highlightId) => {
+    const isSelected = (propertyId, highlightId, trip) => {
         if(highlightId === propertyId){
             return "lightGreen"
+        }
+        else if (trip?.is_recommended){
+            return "yellow"
         }
     }
     
@@ -70,7 +73,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
     return(
         <>    
         
-        <div className="trip-list-trip-container" style={{backgroundColor: isSelected(trip.id, highlight)}}
+        <div className="trip-list-trip-container" style={{backgroundColor: isSelected(trip.id, highlight, trip)}}
      
         onMouseOver={
             () => {

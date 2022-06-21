@@ -46,7 +46,9 @@ export const HomePage = ({tempTrip, isDriver, highlight, setHighlight, pathHighl
             get_all_driver_trips(searchPoint.lat, searchPoint.lng)
             .then(
                 (response) => {
-                    setTrips(response)}
+        
+                    setTrips(response.sort((a, b) => new Date (a.start_date) - new Date(b.start_date)))
+                    }
             )
         },[refresh, searchPoint, isDriver]
 
