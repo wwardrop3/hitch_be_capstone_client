@@ -90,7 +90,7 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
 
             
                 
-                <Route exact path="/">
+                <Route exact path={["/", "/user_select"]}>
                     <UserTypeSelectPage isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh}/>
                 </Route>
                 
