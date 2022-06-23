@@ -1,4 +1,3 @@
-import { refresh } from "@cloudinary/url-gen/qualifiers/artisticFilter"
 import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { delete_driver_trip, delete_passenger_trip } from "../components/trip/TripAuthManager"
