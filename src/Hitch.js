@@ -11,8 +11,9 @@ export const host = "http://localhost:8000"
 export const Hitch = () => {
     const [token, setTokenState] = useState(localStorage.getItem('token'))
     const [staff, setStaffState] = useState(localStorage.getItem('staff'))
-    const [isDriver, setIsDriver] = useState(false)
+    const [isDriver, setIsDriver] = useState(true)
     const [refresh, setRefresh] = useState(false)
+    
     const [searchPoint, setSearchPoint] = useState()
 
 
@@ -49,9 +50,9 @@ export const Hitch = () => {
         token
             ?
             <Route>
-                <NavBar refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} />
+                <NavBar refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} searchPoint={searchPoint} setSearchPoint={setSearchPoint} />
                 
-                <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh}/>
+                <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} searchPoint={searchPoint} setSearchPoint={setSearchPoint}/>
             </Route>
             :
             <Redirect to="/login" />

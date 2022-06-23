@@ -12,13 +12,12 @@ import "../pageStyles/homepage.css"
 // focus trip location
 
 
-export const HomePage = ({isDriver}) => {
+export const HomePage = ({tempTrip, isDriver, highlight, setHighlight, pathHighlight, setPathHighlight}) => {
     
     const [directions, setDirections] = useState()
     const [showInfoBox, setShowInfoBox] = useState(false)
     const userLocation = useMemo(()=> ({lat: parseFloat(localStorage?.getItem("lat")), lng: parseFloat(localStorage?.getItem("lng"))}),[])
     const [selectedPoint, setSelectedPoint] = useState()
-    const [highlight, setHighlight] = useState(false)
     const [searchPoint, setSearchPoint] = useState(userLocation)
     const [trips, setTrips] = useState()
     const [mapRef, setMapRef] = useState()
@@ -47,9 +46,12 @@ export const HomePage = ({isDriver}) => {
             get_all_driver_trips(searchPoint.lat, searchPoint.lng)
             .then(
                 (response) => {
-                    setTrips(response)}
+        
+                    setTrips(response.sort((a, b) => new Date (a.start_date) - new Date(b.start_date)))
+                    }
             )
         },[refresh, searchPoint, isDriver]
+
         
     
     )
@@ -65,7 +67,7 @@ export const HomePage = ({isDriver}) => {
         <div className="homepage-container">
         
             <div className="homepage-trip-list">
-                <TripList trips = {trips} refresh = {refresh} setRefresh = {setRefresh} />    
+                <TripList tempTrip={tempTrip} trips = {trips} refresh = {refresh} setRefresh = {setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight} isDriver={isDriver}/>    
             </div>
 
             <div className="location-search">
@@ -91,7 +93,7 @@ export const HomePage = ({isDriver}) => {
        
 
             <div className="homepage-map-container">
-                    <HitchMap userLocation={userLocation} onLoad={onLoad} searchPoint={searchPoint} setSearchPoint={setSearchPoint} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} trips={trips} mapRef = {mapRef} setDirections={setDirections} directions = {directions} setShowInfoBox = {setShowInfoBox} showInfoBox = {showInfoBox}/>
+                    <HitchMap userLocation={userLocation} onLoad={onLoad} searchPoint={searchPoint} setSearchPoint={setSearchPoint} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} trips={trips} mapRef = {mapRef} setDirections={setDirections} directions = {directions} setShowInfoBox = {setShowInfoBox} showInfoBox = {showInfoBox} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                    
             
             </div>

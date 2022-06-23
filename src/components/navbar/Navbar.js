@@ -16,7 +16,7 @@ export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setSh
         <>
         <div className="navbar">
 
-            <img className="hitch-logo" src="https://sat02pap002files.storage.live.com/y4moTt8OhQGLCzPgJSs5kvgikfvvyAg5746mamtL8mRElqvJ8rNq3JC7h539A6KkHIoWEWrgN6l41MUKDTk_ASa7AAEBvdI8vZc96__DPvTOhxQSLQJEe7CBKNn-zEeF-4rGJ-NJ3doV5FVxNND4nU7oZF-Pc5J2XSi3m6w1YPv8J5gvWDZTCZXsKArMyVDj_Qa?width=96&height=96&cropmode=none"
+            <img className="hitch-logo" src="https://sat02pap002files.storage.live.com/y4m1V9ZiXsfQNrBUnXzmn_KgObimQDlAIx7yrtR4FRHI6ptJPSAp2H08yQ4iPeM8rtJzfjb3RxjCNdODilVTb65gUcABb_RuCu9p9EWXJCiS5ErALD9Jv3rrqjOIhqDEbo7xftqLuAlYSXgv7-68u0IRId2FDkD4qZYKqPe5IOsv-1-mzN_AzQBmgpwNeUJJt-D?width=1718&height=1842&cropmode=none"
             onClick={
                 () => {
                     history.push("/")
@@ -25,7 +25,7 @@ export const NavBar = ({isDriver, setIsDriver, token, setToken, showModal, setSh
 
             
    
-            <img className="nav-title-logo" src="https://sat02pap002files.storage.live.com/y4me3HXQPkLDfZGzC_T73xcBJd5TZc7ny3eeim3h7sAaZYfZqXDuPgdRrUAacktukr6CC_NrSri5x-ezKyFq8YHG6fFxaGHPaHvelYvGsBSElTcbxJyPTUhpooznvpNFku7ZZoVc7g43eyVKTk2wC5B8n0idoT1IXZNiGs5Y7LSUlJeP4VY_7PLxUoJuBjc4vbV?width=1008&height=449&cropmode=none"/>
+            {/* <img className="nav-title-logo" src="https://sat02pap002files.storage.live.com/y4mwFbVyIAwe8UwS4-vKobMeLbAuOxgPhmkrPIEhS5ExLCVbKoLTFzg4waHvxS83ieulOTmQ-qb5Axosz6Ndkd5YcIcHm-aupsvS8EGBKUbeeKma_y4gDD5o-nfPY_ILV9UK_cEgQ0m-gtjLMZ5FXrQnzXlJiOQjtI1g7CBeo5bMt11iX2ZmeIhehYEC9UyRFkN?width=1168&height=627&cropmode=none"/> */}
 
             {/* <div className="type-toggle">
                 <div class="switch-button">

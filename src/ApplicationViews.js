@@ -9,6 +9,7 @@ import { LoginLandingPage } from "./pages/LoginLandingPage";
 import { MessagesPage } from "./pages/MessagesPage";
 import { NewTripPage } from "./pages/NewTripPage";
 import { get_member } from "./pages/PagesAuthManager";
+import { PassengerTripDetailsPage } from "./pages/PassengerTripDetailsPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { TripDetailsPage } from "./pages/TripDetailsPage";
 import { UserTypeSelectPage } from "./pages/UserTypeSelectPage";
@@ -16,7 +17,7 @@ import { UserTypeSelectPage } from "./pages/UserTypeSelectPage";
 
 
 const openNav = () => {
-    document.getElementById("sidebar-content").style.width = "10%";
+    document.getElementById("sidebar-content").style.width = "5%";
 
 }
 
@@ -27,8 +28,29 @@ const closeNav= () => {
 
 export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, searchPoint, setSearchPoint}) => {
     const [member, setMember] = useState()
-    const [origin, setOrigin] = useState()
-    const [destination, setDestination] = useState()
+    const [highlight, setHighlight] = useState()
+    const [pathHighlight, setPathHighlight] = useState()
+
+    const [tempTrip, setTempTrip] = useState(
+        {
+            origin: "",
+            origin_place: "",
+            destination: "",
+            destination_place: "",
+            start_date: "",
+            detour_radius: "",
+            trip_summary: "",
+            seats: 1,
+            completion_date: "",
+            creation_date: "",
+            completed: false,
+            path: "",
+            trip_distance: "",
+            expected_travel_time: "",
+            tags:""
+
+        }
+    )
     
 
     useEffect(
@@ -42,23 +64,7 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
         },[]
     )
 
-    const [tempTrip, setTempTrip] = useState(
-        {
-            origin: origin,
-            destination: destination,
-            start_date: "",
-            detour_radius: "",
-            trip_summary: "",
-            seats: 1,
-            completion_date: "",
-            completed: false,
-            path: "",
-            trip_distance: "",
-            expected_travel_time: "",
-            tags:""
-
-        }
-    )
+    
 
 
     
@@ -90,24 +96,25 @@ export const ApplicationViews = ({isDriver, setIsDriver, refresh, setRefresh, se
                 
                 
                 <Route exact path = {"/home"}>
-                    <HomePage searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} refresh ={refresh} setRefresh={setRefresh}/>
-                </Route>
-
-                <Route exact path = "/trip/new/passenger">
-                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} refresh ={refresh} setRefresh={setRefresh}/>
+                    <HomePage tempTrip={tempTrip} searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
 
-                <Route exact path = "/trip/new/driver">
-                    <NewTripPage isDriver={isDriver} setIsDriver={setIsDriver} tempTrip={tempTrip} setTempTrip={setTempTrip} origin={origin} destination={destination} setOrigin={setOrigin} setDestination={setDestination} refresh ={refresh} setRefresh={setRefresh}/>
+
+                <Route exact path = "/trip/new">
+                    <NewTripPage tempTrip={tempTrip} setTempTrip={setTempTrip} searchPoint={searchPoint} setSearchPoint={setSearchPoint} isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} highlight = {highlight} setHighlight = {setHighlight} pathHighlight = {pathHighlight} setPathHighlight={setPathHighlight}/>
                 </Route>
 
-                <Route exact path = "/trips/:driverTripId(\d+)">
-                    <TripDetailsPage refresh ={refresh} setRefresh={setRefresh}/>
+                <Route exact path = "/driver_trips/:driverTripId(\d+)">
+                    <TripDetailsPage refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} />
+                </Route>
+
+                <Route exact path = "/passenger_trips/:passengerTripId(\d+)">
+                    <PassengerTripDetailsPage refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} />
                 </Route>
 
                 <Route exact path = "/profile">
-                    <ProfilePage />
+                    <ProfilePage isDriver={isDriver} setIsDriver={setIsDriver} />
                 </Route>
                 
                 <Route exact path = "/messages">

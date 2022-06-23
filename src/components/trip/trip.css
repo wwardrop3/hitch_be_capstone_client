@@ -97,3 +97,44 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+
+  .trip-list{
+    display: flex;
+    width: 40%;
+    align-items: right;
+    justify-content: right;
+    flex-direction: column;
+    height: 100vh;
+
+
+}
+
+
+
+
+
+.new-trip-form{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+
+
+.create-new-trip-container{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.create-new-trip-trips-container{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.buttons{
+    display: flex;
+}

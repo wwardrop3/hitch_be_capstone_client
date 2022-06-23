@@ -1,0 +1,51 @@
+.messages-container{
+    width: 100vw;
+    display: flex;
+
+}
+
+.trip-list-column{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    padding: auto;
+}
+
+
+.trip-messages-column{
+    width: 30%;
+
+}
+
+.message-details-column{
+    width: 30%;
+}
+
+.list-message-container{
+    display: flex;
+    flex-direction: column;
+    border: 3px black solid;
+    width: 90%;
+    max-height: 20%;
+}
+
+.list-trip-container{
+    display: flex;
+    flex-direction: column;
+    border: 3px black solid;
+    width: 100%;
+    margin: auto;
+}
+
+.messages-trip-list{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    max-height: 50%;
+    border: 2px gray solid
+
+}
+
+

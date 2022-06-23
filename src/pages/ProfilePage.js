@@ -1,5 +1,7 @@
+import { refresh } from "@cloudinary/url-gen/qualifiers/artisticFilter"
 import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
+import { delete_driver_trip, delete_passenger_trip } from "../components/trip/TripAuthManager"
 import { TripListTrip } from "../components/trip/TripListTrip"
 import "../pageStyles/profile_page.css"
 import { delete_member, get_member } from "./PagesAuthManager"
@@ -7,7 +9,7 @@ import { TripDetailsPage } from "./TripDetailsPage"
 
 export const ProfilePage = () => {
     const history = useHistory()
-
+    const [refresh, setRefresh] = useState(false)
     const [member, setMember] = useState()
 
 
@@ -19,7 +21,7 @@ export const ProfilePage = () => {
                     setMember(response)
                 }
             )
-        },[]
+        },[refresh]
     )
 
 
@@ -58,8 +60,8 @@ export const ProfilePage = () => {
                     <h4>Quick Stats</h4>
 
                    <div>
-                        <p>Avg Rating: {member?.avg_rating}</p>
-                        <p>Number of Ratings: {member?.total_ratings}</p>
+                        <p>Avg Rating: {member?.avg_rating ? member?.avg_rating: "No Ratings Yet"}</p>
+                        <p>Number of Ratings: {member?.total_ratings ? member?.total_ratings: "No Ratings Yet"}</p>
                    </div>
 
                 </div>
@@ -67,14 +69,15 @@ export const ProfilePage = () => {
             </div>
 
             <div className="profile-page-column-2">
-                <div className="driver-trips">
-
                 <h2>Driver Trips</h2>
+                <div className="trips">
+
+               
 
                 {member?.driver_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/trips/${trip.id}`}>
+                        <Link to={`/driver_trips/${trip.id}`}>
                         <div className="trip-list-trip-info">
                             <table>
                                 <tbody>
@@ -137,6 +140,18 @@ export const ProfilePage = () => {
                 } */}
                 </div>
                         </Link>
+                        <button
+                            onClick={
+                                () => {
+                                    delete_driver_trip(trip.id)
+                                    .then(
+                                        () => {
+                                            setRefresh(!refresh)
+                                        }
+                                    )
+                                }
+                            }>Delete Trip</button>
+                           
                         
                         </>
                     )
@@ -144,30 +159,20 @@ export const ProfilePage = () => {
                 </div>
                 
 
-
-                <div className="driver-trips">
-
                 <h2>Passenger Trips</h2>
+                <div className="trips">
 
+               
                 {member?.passenger_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/trips/${trip.id}`}>
+                        <Link to={`/passenger_trips/${trip.id}`}>
                         <div className="trip-list-trip-info">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                       
-                                    </tr>
-                                    <tr>
-                                    
-                                        <td>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</td>
-                                        <td>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </td>
-                                    
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                             
+                            <div>{trip.origin_place} to {trip.destination_place}</div>
+                            <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
+                            <p>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </p>
+                            
 
 
             
@@ -193,6 +198,19 @@ export const ProfilePage = () => {
                         </div>
                         </div>
                         </Link>
+
+                        <button
+                            onClick={
+                                () => {
+                                    delete_passenger_trip(trip.id)
+                                    .then(
+                                        () => {
+                                            setRefresh(!refresh)
+                                        }
+                                    )
+                                }
+                            }>Delete Trip</button>
+                           
                         
                         </>
                     )

@@ -5,11 +5,14 @@ import { render } from "react-dom";import { Link, useHistory } from "react-route
 import "./trip.css"
 import { delete_driver_trip, rate_driver, remove_passenger, sign_up_passenger, update_driver_trip } from "./TripAuthManager"
 import { useEffect } from "react";
+import { create_new_message } from "../message/MessageAuthManager";
+import { NewMessage } from "../message/NewMessage";
 
-export const TripListTrip = ({trip, refresh, setRefresh}) => {
+export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathHighlight, highlight, setHighlight}) => {
 
     const [showRating, setShowRating]= useState(false)
     const [rating, setRating] = useState({})
+    const [showMessage, setShowMessage] = useState(false)
 
 
     useEffect(
@@ -39,7 +42,7 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
         // update_driver_trip(copy)
         update_driver_trip(copy).then(
             () => {
-                debugger
+
                 rate_driver(rating)
                 .then(
                     () => {
@@ -52,6 +55,16 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
         
 
     }
+
+    const isSelected = (propertyId, highlightId, trip) => {
+        if(highlightId === propertyId){
+            return "lightGreen"
+        }
+        else if (trip?.is_recommended){
+            return "yellow"
+        }
+    }
+    
      
         
     
@@ -60,22 +73,40 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
     return(
         <>    
         
-        <div className="trip-list-trip-container">
+        <div className="trip-list-trip-container" style={{backgroundColor: isSelected(trip.id, highlight, trip)}}
+     
+        onMouseOver={
+            () => {
+                setPathHighlight(trip.id)
+                setHighlight(trip.id)
+            }
+        }
+        
+        onMouseOut ={
+            () => {
+                setPathHighlight("")
+                setHighlight("")
+            }
+            
+        }
+        
+        >
+            
 
             <div className="image-container">
 
-                <img className="trip-list-trip-profile-picture" src={trip.driver.profile_image_url}/>
+                <img className="trip-list-trip-profile-picture" src={trip.driver?.profile_image_url}/>
 
             </div>
 
             
             <div className="trip-list-trip-content">
-            <Link to={`/trips/${trip.id}`}>
+            <Link to={`/driver_trips/${trip.id}`}>
                 <div className="trip-list-trip-info">
                     <table>
                         <tbody>
                             <tr>
-                                <th colSpan={3}>{trip.driver.user['first_name']}</th>
+                                <th colSpan={3}>{trip.driver?.user['first_name']}</th>
                             </tr>
                             <tr>
                                 <td>Seats: {trip.seats}</td>
@@ -105,6 +136,7 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                     
                 </div>
                 </Link>
+            <div className="buttons">
             {trip?.completed ? 
                 <div>Completed</div>
             :
@@ -141,8 +173,20 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                             }
                                         )
                                     }
-                                }>Cancel Ride</button>
+                                }>Cancel Request</button>
 
+                                
+
+                                {trip.passenger_trips[0].is_approved ?
+                                <>
+                                <button
+                                onClick={
+                                    () => {
+                                        setShowMessage(!showMessage)
+                                    }
+                                }
+                                >Send Message</button>
+                                
                                 <button
                                 onClick={
                                     () => {
@@ -150,6 +194,8 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                     }
                                 }
                                 >Complete Trip</button>
+                            </>
+                            :""}
 
                                 
                             </>
@@ -170,7 +216,7 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                                             }
                                         )
                                     }
-                                }>Sign Up For Ride</button>
+                                }>Request Ride</button>
                             
                             
                             }
@@ -249,6 +295,7 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
                 </div>
 
                 </div>
+                
             
             </>
             
@@ -256,7 +303,19 @@ export const TripListTrip = ({trip, refresh, setRefresh}) => {
         
         
         :""}
+
+
+        {showMessage ? 
+            <>
+            <NewMessage trip = {trip} refresh={refresh} setRefresh={setRefresh} showMessage={showMessage} setShowMessage={setShowMessage} />
+            
+            </>
+            
         
+        
+        
+        :""}
+        </div>
         </>
             
             

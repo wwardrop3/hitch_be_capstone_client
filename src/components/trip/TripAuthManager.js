@@ -69,6 +69,17 @@ export const update_driver_trip = (driver_trip) => {
     })
 }
 
+export const update_passenger_trip = (passenger_trip) => {
+    return fetch(`${host}/passenger_trips/${passenger_trip.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(passenger_trip)
+        
+    })
+}
 
 export const sign_up_passenger= (driver_trip) => {
     return fetch(`${host}/driver_trips/${driver_trip.id}/sign_up_passenger`, {
@@ -98,8 +109,8 @@ export const remove_passenger= (driver_trip) => {
 
 
 export const get_driver_trips_by_passenger_trip = (tempPassengerTrip) => {
-    return fetch(`${host}/passenger_trips/driver_trips_by_passenger_trip`, {
-        method: "GET",
+    return fetch(`${host}/driver_trips/get_driver_trips_by_passenger_trip`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("token")}`
@@ -128,3 +139,21 @@ export const rate_driver = (rating) => {
     })
 }
 
+
+
+export const delete_passenger_trip = (id) => {
+    return fetch(`${host}/passenger_trips/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+}
+
+export const get_passenger_trip = (id) => {
+    return fetch(`${host}/passenger_trips/${id}`,{
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+}})
+    .then(res => res.json())
+}

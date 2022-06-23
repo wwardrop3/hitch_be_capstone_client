@@ -17,7 +17,7 @@ const google = window.google = window.google ? window.google : {}
   
 
 
-export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDestination, origin, setOrigin, originPlace, setOriginPlace, destinationPlace, setDestinationPlace}) => {
+export const CreateDriverTrip = ({tempTrip, setTempTrip, destination, setDestination, origin, setOrigin, originPlace, setOriginPlace, destinationPlace, setDestinationPlace}) => {
     const history = useHistory()
 
     const [checkedState, setCheckedState] = useState({})
@@ -68,34 +68,23 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
     // }
 
 
-    const options = useMemo(
-        () => ({
-        mapId: "919771f94d285faa",
-        disableDefaultUI: true,
-        clickableIcons: false,
-        }),
-        []
-      )
 
     
-
-
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        tempTrip.origin = origin
-        tempTrip.destination = destination
-        tempTrip.origin_place = originPlace
-        tempTrip.destination_place = destinationPlace
-        // transferChecks()
-        // isDriver ?
-        create_new_driver_trip(tempTrip).then(
-            () => {
-                history.push("/home")
-            })
-        // :
-        //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     tempTrip.origin = origin
+    //     tempTrip.destination = destination
+    //     tempTrip.origin_place = originPlace
+    //     tempTrip.destination_place = destinationPlace
+    //     // transferChecks()
+    //     // isDriver ?
+    //     create_new_driver_trip(tempTrip).then(
+    //         () => {
+    //             history.push("/home")
+    //         })
+    //     // :
+    //     //     create_new_passenger_trip(tempTrip).then(history.push("/home"))
+    // }
 
 
     const fetchDirections = () => {
@@ -113,18 +102,25 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                     copy.path = result.routes[0].overview_polyline
                     copy.trip_distance = result.routes[0].legs[0].distance.value
                     copy.expected_travel_time = result.routes[0].legs[0].duration.value
+                    copy.origin = origin
+                    copy.destination = destination
+                    copy.origin_place = originPlace
+                    copy.destination_place = destinationPlace
+                    copy.is_approved = false
                     setTempTrip(copy)
+                    create_new_driver_trip(copy)
+                    .then(
+                        (response) => {
+                            history.push("/home")
+                        }
+                    )
+
                 }
             }
         )
     }
 
-    useEffect(
-        () => {
-            fetchDirections()
-        }, [destination]
-    )
-
+ 
   
 
 
@@ -178,8 +174,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                         </div>
                         </div>
 
-            {isDriver ?
-            <>
+
                         <div className="field">
                             <label className="label">Detour Radius</label>
                             <div className="control">
@@ -239,7 +234,6 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
             
                         
                 
-                </>:""}
 
                 <div className="field">
                         <label className="label">Trip Summary</label>
@@ -259,7 +253,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                             <button className="button is-link" 
                             onClick={
                                 (evt) => {
-                                    handleSubmit(evt)
+                                    fetchDirections()
                                 }
                             }>Submit</button>
                         </div>
