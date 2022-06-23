@@ -1,5 +1,7 @@
+import { host } from "../../Hitch"
+
 export const loginUser = (user) => {
-    return fetch("http://127.0.0.1:8000/login", {
+    return fetch(`${host}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +15,7 @@ export const loginUser = (user) => {
   }
   
   export const registerUser = (newUser) => {
-    return fetch("http://127.0.0.1:8000/register", {
+    return fetch(`${host}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
