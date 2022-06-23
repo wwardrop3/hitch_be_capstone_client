@@ -136,6 +136,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
                     
                 </div>
                 </Link>
+            <div className="buttons">
             {trip?.completed ? 
                 <div>Completed</div>
             :
@@ -294,6 +295,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
                 </div>
 
                 </div>
+                
             
             </>
             
@@ -313,7 +315,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
         
         
         :""}
-        
+        </div>
         </>
             
             

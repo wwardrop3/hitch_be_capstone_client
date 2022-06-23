@@ -99,21 +99,18 @@ export const NewTripPage = ({tempTrip, setTempTrip, isDriver, setIsDriver, highl
             <div className="new-trip-page-header">
 
                 {isDriver ? <h1>New Driver Trip</h1>: <h1>New Passenger Trip</h1>}
-                <div className="type-toggle">
+                {/* <div className="type-toggle">
                     <div class="switch-button">
                         <input class="switch-button-checkbox" type="checkbox" 
                         onClick={
                             () => {
                                 setIsDriver(!isDriver)
-                                setRefresh(!refresh)
-                        
-                            
                             }}
                                 
                                 ></input>
-                        <label class="switch-button-label" for=""><span class="switch-button-label-span">Driver</span></label>
+                        <label class="switch-button-label"><span class="switch-button-label-span">Driver/Passenger</span></label>
                     </div>
-                </div>
+                </div> */}
 
                 
             </div>

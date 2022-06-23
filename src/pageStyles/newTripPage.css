@@ -15,7 +15,7 @@
     }
     
     .switch-button:before {
-        content: "Passenger";
+        content: "Driver/Passenger";
         position: absolute;
         top: 0;
         bottom: 0;
@@ -72,6 +72,7 @@
     .type-toggle{
         position: relative;
         height: 3vh;
+        width: 50%;
     
     }
     

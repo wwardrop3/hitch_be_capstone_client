@@ -60,8 +60,8 @@ export const ProfilePage = () => {
                     <h4>Quick Stats</h4>
 
                    <div>
-                        <p>Avg Rating: {member?.avg_rating}</p>
-                        <p>Number of Ratings: {member?.total_ratings}</p>
+                        <p>Avg Rating: {member?.avg_rating ? member?.avg_rating: "No Ratings Yet"}</p>
+                        <p>Number of Ratings: {member?.total_ratings ? member?.total_ratings: "No Ratings Yet"}</p>
                    </div>
 
                 </div>

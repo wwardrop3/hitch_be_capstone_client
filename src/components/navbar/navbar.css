@@ -2,9 +2,10 @@
 
 .hitch-logo{
     position: fixed;
-    max-height: 5vh;
+    max-height: 4vh;
     width: auto;
     left: 2%;
+    margin: auto;
     
 }
 

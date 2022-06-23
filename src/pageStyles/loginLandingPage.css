@@ -16,9 +16,9 @@
     position: fixed;
     display: flex;
     height: 80%;
-    width: 80%;
+    width: 50%;
     background-size: contain;
-    background-image: url("https://sat02pap002files.storage.live.com/y4me3HXQPkLDfZGzC_T73xcBJd5TZc7ny3eeim3h7sAaZYfZqXDuPgdRrUAacktukr6CC_NrSri5x-ezKyFq8YHG6fFxaGHPaHvelYvGsBSElTcbxJyPTUhpooznvpNFku7ZZoVc7g43eyVKTk2wC5B8n0idoT1IXZNiGs5Y7LSUlJeP4VY_7PLxUoJuBjc4vbV?width=1008&height=449&cropmode=none");
+    background-image: url("https://sat02pap002files.storage.live.com/y4mwFbVyIAwe8UwS4-vKobMeLbAuOxgPhmkrPIEhS5ExLCVbKoLTFzg4waHvxS83ieulOTmQ-qb5Axosz6Ndkd5YcIcHm-aupsvS8EGBKUbeeKma_y4gDD5o-nfPY_ILV9UK_cEgQ0m-gtjLMZ5FXrQnzXlJiOQjtI1g7CBeo5bMt11iX2ZmeIhehYEC9UyRFkN?width=1168&height=627&cropmode=none");
     background-repeat: no-repeat;
     justify-content: center;
     min-width: 50vw;

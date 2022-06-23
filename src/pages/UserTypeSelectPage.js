@@ -39,34 +39,35 @@ export const UserTypeSelectPage = ({isDriver, setIsDriver}) => {
                 </div>
 
                
-                <Link
+                <div
                 className="user-type"
                 to= "/trip/new"
-                // onClick = {
-                //     () => {
-                //         setIsDriver(false)
+                onClick = {
+                    () => {
+                        setIsDriver(false)
+                        history.push("/trip/new")
                        
                   
                         
-                //     }}
+                    }}
                     ><img src="https://cdn.vox-cdn.com/thumbor/W6dccN6tlKcHBtFSMYkd9BsKd7M=/0x0:7492x5619/1200x800/filters:focal(0x0:7492x5619)/cdn.vox-cdn.com/uploads/chorus_image/image/46484254/shutterstock_244451992.0.0.jpg" />
 
 
                 
 
-                 </Link>
+                 </div>
 
-                <Link
+                <div
                 className="user-type"
                 to= "/trip/new"
-                // onClick = {
-                //     () => {
-                //         setIsDriver(true)
-                      
-                //     }
-                // }
+                onClick = {
+                    () => {
+                        setIsDriver(true)
+                        history.push("/trip/new")
+                    }
+                }
                 ><img src="https://media.istockphoto.com/photos/drive-test-at-car-dealership-picture-id1138561454?k=20&m=1138561454&s=612x612&w=0&h=TYiFHkVhGXvbdrlURGEQMlerXYb4F8ck7zaNARQzQJU=" />
-                 </Link>
+                 </div>
             </div>
 
         </>

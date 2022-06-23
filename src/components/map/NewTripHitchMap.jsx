@@ -236,7 +236,7 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                     strokeWeight: 1,
                                     scale: 3,
                                     strokeColor: "black",
-                                    anchor: new google.maps.Point(10,22)
+                                    anchor: new google.maps.Point(12,22)
                                 }}
                                
                             
@@ -259,7 +259,7 @@ export const NewTripHitchMap = ({fetchDirections ,origin, destination, onLoad, t
                                     strokeWeight: 1,
                                     scale: 3,
                                     strokeColor: "black",
-                                    anchor: new google.maps.Point(10,22)
+                                    anchor: new google.maps.Point(12,22)
                                 }}
                                
                             
