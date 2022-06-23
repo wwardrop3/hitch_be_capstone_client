@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom"
 import { registerUser } from "./AuthManager"
 
-export const Register = ({setToken}) => {
+export const Register = ({setToken, showRegister, setShowRegister, showLogin, setShowLogin }) => {
   const firstName = useRef()
   const lastName = useRef()
   const email = useRef()
@@ -32,9 +32,9 @@ export const Register = ({setToken}) => {
       registerUser(newUser)
       .then(res => {
           if ("valid" in res && res.valid) {
-            debugger
-            setToken(res.token)
-            history.push("/")
+            setToken(res.token, res.is_staff)
+            
+            
           }
         })
     } else {
@@ -108,7 +108,14 @@ export const Register = ({setToken}) => {
 
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link" type="submit">Submit</button>
+            <button className="button is-link"
+            onClick={
+              (e) => {
+                handleRegister(e)
+                setShowRegister(!showRegister)
+                setShowLogin(true)
+              }
+            }>Submit</button>
           </div>
           <div className="control">
             <Link to="/login" className="button is-link is-light">Cancel</Link>

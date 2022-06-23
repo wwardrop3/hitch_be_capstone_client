@@ -40,7 +40,7 @@ export const LoginLandingPage = ({token, setToken}) => {
             }
         }>Register</button>
         
-        {showRegister ? <Register token={token} setToken = {setToken} /> :""}
+        {showRegister ? <Register token={token} setToken = {setToken} showRegister={showRegister} setShowRegister={setShowRegister} showLogin={showLogin} setShowLogin={setShowLogin} /> :""}
 
 
 
