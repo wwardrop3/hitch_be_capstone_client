@@ -1,6 +1,9 @@
 {
   "name": "hitch_be_capstone_client",
   "version": "0.1.0",
+  "engines": {
+    "node": "16.x"
+  },
   "private": true,
   "dependencies": {
     "@cloudinary/react": "^1.4.1",
