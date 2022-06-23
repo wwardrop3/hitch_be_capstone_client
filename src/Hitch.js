@@ -4,8 +4,8 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./components/navbar/Navbar"
 import { Sidebar } from "./components/sidebar/Sidebar"
 import { LoginLandingPage } from "./pages/LoginLandingPage"
-// export const host = "http://localhost:8000"
-export const host = "https://hitch-capstone-server.herokuapp.com"
+export const host = "http://localhost:8000"
+// export const host = "https://hitch-capstone-server.herokuapp.com"
 
 
 
