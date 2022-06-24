@@ -1,40 +1,50 @@
-.background-image{
+.landing-page-container{
     display: flex;
+    flex-direction: column;
+}
+
+.background-image{
+    display: fixed;
     height: 100vh;
     width: 100vw;
     background-size: cover;
     background-image: url("https://i.ytimg.com/vi/rQfg9g8sM_A/maxresdefault.jpg");
     background-repeat: no-repeat;
-    justify-content: center;
     min-width: 50vw;
+    z-index: 1;
     
-  
   }
 
 
 .hitch-title-logo{
     position: fixed;
-    display: flex;
-    height: 80%;
-    width: 50%;
+    height: 100%;
+    width: 40%;
     background-size: contain;
     background-image: url("https://sat02pap002files.storage.live.com/y4mwFbVyIAwe8UwS4-vKobMeLbAuOxgPhmkrPIEhS5ExLCVbKoLTFzg4waHvxS83ieulOTmQ-qb5Axosz6Ndkd5YcIcHm-aupsvS8EGBKUbeeKma_y4gDD5o-nfPY_ILV9UK_cEgQ0m-gtjLMZ5FXrQnzXlJiOQjtI1g7CBeo5bMt11iX2ZmeIhehYEC9UyRFkN?width=1168&height=627&cropmode=none");
     background-repeat: no-repeat;
     justify-content: center;
-    min-width: 50vw;
-
-    
-
+    min-width: 30vw;
+    left: 30vw;
+    z-index: 50;
 
 }
 
+.auth-buttons{
+    display: flex;
+    position: fixed;
+    z-index: 1;
+}
 
-
-.auth-forms{
+.auth-content{
+    position: fixed;
+    display: flex;
     color: white;
     position: fixed;
     display: flex;
-    bottom: 20%;
+    top: 15%;
+    left: 0%;
+    z-index: 1;
 }
 
 .label{

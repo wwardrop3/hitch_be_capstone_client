@@ -13,43 +13,42 @@ export const LoginLandingPage = ({token, setToken}) => {
 
     return (
         <>
+        <div className="landing-page-container">
+            <div className="background-image"></div>
+            <div className="hitch-title-logo"></div>
        
-        <div className="background-image">
-            <div className="hitch-title-logo">
+       
           
-            
+            <div className="auth-buttons">
+                <button className="auth-button"
+                    onClick={
+                        () => {
+                            setShowLogin(!showLogin)
+                            setShowRegister(false)
+                        }
+                    }>Login</button>
+
+            <button className="auth-button"
+                onClick={
+                    () => {
+                        setShowRegister(!showRegister)
+                        setShowLogin(false)
+                    }
+                }>Register</button>
+            </div>
                 
             
-        <div className="auth-forms">
-        <button className="auth-button"
-        onClick={
-            () => {
-                setShowLogin(!showLogin)
-                setShowRegister(false)
-            }
-        }>Login</button>
-        
-        {showLogin ? <Login token={token} setToken = {setToken} /> :""}
+        <div className="auth-content">
+            
+            {showLogin ? <Login token={token} setToken = {setToken} /> :""}
 
-
-        <button className="auth-button"
-        onClick={
-            () => {
-                setShowRegister(!showRegister)
-                setShowLogin(false)
-            }
-        }>Register</button>
-        
-        {showRegister ? <Register token={token} setToken = {setToken} showRegister={showRegister} setShowRegister={setShowRegister} showLogin={showLogin} setShowLogin={setShowLogin} /> :""}
-
-
-
+            {showRegister ? <Register token={token} setToken = {setToken} showRegister={showRegister} setShowRegister={setShowRegister} showLogin={showLogin} setShowLogin={setShowLogin} /> :""}
 
         </div>
         </div>
+
     
-        </div>
-
+     
      
        
 
