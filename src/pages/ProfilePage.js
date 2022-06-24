@@ -76,8 +76,9 @@ export const ProfilePage = () => {
                 {member?.driver_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/driver_trips/${trip.id}`}>
+                        
                         <div className="trip-list-trip-info">
+                            <Link to={`/driver_trips/${trip.id}`}>
                            
                             <h5>{trip.origin_place} to {trip.destination_place}</h5>
                             <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
@@ -129,9 +130,8 @@ export const ProfilePage = () => {
                     >Reject Request</button>
                 
                 } */}
-                </div>
-                        </Link>
-                        <button
+                </Link>
+                <button
                             onClick={
                                 () => {
                                     delete_driver_trip(trip.id)
@@ -142,6 +142,9 @@ export const ProfilePage = () => {
                                     )
                                 }
                             }>Delete Trip</button>
+                </div>
+                        
+                        
                            
                         
                         </>
@@ -157,8 +160,9 @@ export const ProfilePage = () => {
                 {member?.passenger_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/passenger_trips/${trip.id}`}>
+                        
                         <div className="trip-list-trip-info">
+                        <Link to={`/passenger_trips/${trip.id}`}>
                              
                             <h5>{trip.driver_trips[0].origin_place} to {trip.driver_trips[0]?.destination_place}</h5>
                             <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
@@ -187,9 +191,7 @@ export const ProfilePage = () => {
                             </table>
                             
                         </div>
-                        </div>
                         </Link>
-
                         <button
                             onClick={
                                 () => {
@@ -201,6 +203,10 @@ export const ProfilePage = () => {
                                     )
                                 }
                             }>Delete Trip</button>
+                        </div>
+                        
+
+                        
                            
                         
                         </>
