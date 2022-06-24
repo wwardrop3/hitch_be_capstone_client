@@ -78,20 +78,12 @@ export const ProfilePage = () => {
                         <>
                         <Link to={`/driver_trips/${trip.id}`}>
                         <div className="trip-list-trip-info">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th colSpan={3}>{trip?.driver.user['first_name']}</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Seats: {trip.seats}</td>
-                                        <td>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</td>
-                                        <td>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </td>
-                                    
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                           
+                            <h5>{trip.origin_place} to {trip.destination_place}</h5>
+                            <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
+                            <p>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </p>
+                            
+                                 
 
 
             
@@ -168,7 +160,7 @@ export const ProfilePage = () => {
                         <Link to={`/passenger_trips/${trip.id}`}>
                         <div className="trip-list-trip-info">
                              
-                            <div>{trip.origin_place} to {trip.destination_place}</div>
+                            <h5>{trip.driver_trips[0].origin_place} to {trip.driver_trips[0]?.destination_place}</h5>
                             <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
                             <p>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </p>
                             

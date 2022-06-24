@@ -179,13 +179,7 @@ export const TripListTrip = ({trip, refresh, setRefresh, pathHighlight, setPathH
 
                                 {trip.passenger_trips[0].is_approved ?
                                 <>
-                                <button
-                                onClick={
-                                    () => {
-                                        setShowMessage(!showMessage)
-                                    }
-                                }
-                                >Send Message</button>
+                               
                                 
                                 <button
                                 onClick={
