@@ -96,7 +96,7 @@ export const ProfilePage = () => {
                                 <tbody>
                                     <tr>
                                         <th>Start Date</th>
-                                        <td>{new Date(trip.start_date).toDateString()}</td>
+                                        <td>{new Date(trip?.start_date).toDateString()}</td>
                                     </tr>
 
                                     <tr>
@@ -164,7 +164,7 @@ export const ProfilePage = () => {
                         <div className="trip-list-trip-info">
                         <Link to={`/passenger_trips/${trip.id}`}>
                              
-                            <h5>{trip.driver_trips[0].origin_place} to {trip.driver_trips[0]?.destination_place}</h5>
+                            <h5>{trip.driver_trips[0]?.origin_place} to {trip.driver_trips[0]?.destination_place}</h5>
                             <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
                             <p>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </p>
                             
