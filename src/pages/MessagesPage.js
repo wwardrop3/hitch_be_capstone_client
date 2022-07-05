@@ -139,11 +139,16 @@ export const MessagesPage = () => {
 
                             }
                         }>
-                            {passenger_trip.is_approved ? <h6>Approved</h6>: <h6>Pending</h6>}
+                            {passenger_trip.is_approved ?
+                            <>
+                            <h6>Approved</h6>
                             <div className="list-passenger_trip-header">
-                                <h4>{passenger_trip.sender?.id}</h4>
+                                <h4>{passenger_trip.driver_trips[0]?.origin_place} to {passenger_trip.driver_trips[0]?.destination_place}</h4>
                                 <div>{new Date(passenger_trip.start_date).toDateString()}</div>
                             </div>
+                            </>
+                            
+                            : <h6>Pending</h6>}
                            
 
                         </div>
@@ -158,7 +163,7 @@ export const MessagesPage = () => {
 
                 {/* iterate through each trip the member is either a passenger or driver on
                 all trips will have at least an initial message */}
-                Trip List Column
+          
 
             </div>
 
@@ -174,7 +179,7 @@ export const MessagesPage = () => {
                 tripMessages.map(message => {
                     return (
                         <>
-                        <div className="list-message-container"
+                        <div className="list-trip-container"
                         onClick={
                             () => {
                                 setMessage(message)
@@ -182,10 +187,10 @@ export const MessagesPage = () => {
                         }>
                             
                             <div className="list-message-header">
-                                <h4>{message.driver_trip.origin_place}</h4> 
+                                <h4>{message?.driver_trip.origin_place}</h4> 
                                 <p>TO</p> 
-                                <h4>{message.driver_trip.destination_place}</h4>
-                                <h4>From {message.sender.user.first_name}</h4>
+                                <h4>{message.driver_trip?.destination_place}</h4>
+                                <div>From {message.sender?.user.first_name} to {message.receiver?.user.first_name}</div>
                                 <div>{new Date(message.creation_date).toDateString()}</div>
                             </div>
                            
@@ -211,19 +216,18 @@ export const MessagesPage = () => {
                 tripMessages.map(message => {
                     return (
                         <>
-                        <div className="list-message-container"
+                        <div className="list-trip-container"
                         onClick={
                             () => {
                                 setMessage(message)
                             }
                         }>
                             
-                            <div className="list-message-header">
-                                <h4>{message.driver_trip.origin_place}</h4> 
-                                <p>TO</p> 
-                                <h4>{message.driver_trip.destination_place}</h4>
-                                <h4>{message.sender.id}</h4>
-                                <div>{message.creation_date}</div>
+                            <div className="list-driver-trip-header">
+                                <h5>{message.driver_trip.origin_place}</h5> 
+                                <h5>{message.driver_trip.destination_place}</h5>
+                                <div>From: {message.sender?.user.first_name} to {message.receiver?.user.first_name}</div>
+                                
                             </div>
                            
 
@@ -241,7 +245,7 @@ export const MessagesPage = () => {
 
                 {/* once a trip is selected, this column will show all messages sorted by most recent
                 and show if they have been opened or not */}
-                Trip Messages Column
+            
 
             </div>
 
@@ -257,13 +261,13 @@ export const MessagesPage = () => {
                     () => {
                         setShowReply(!showReply)
                     }
-                }>Reply</button>
+                }>Reply to {message.sender?.user.first_name}</button>
 
                 {showReply ?
                 <>
                 <div className="message-reply">
 
-                <h2>Reply</h2>
+                <h2>Reply to {message.sender?.user.first_name}</h2>
 
                         
                         <label htmlFor="reply-text">Message Text:</label>
@@ -296,7 +300,7 @@ export const MessagesPage = () => {
 
                 {/* once a message is selected, the content of the message will appear in the column
                 on the right */}
-                Message Detail Column
+             
 
             </div>
             

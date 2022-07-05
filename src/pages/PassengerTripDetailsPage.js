@@ -77,7 +77,7 @@ export const PassengerTripDetailsPage = ({isDriver, setIsDriver}) => {
                     </div>
 
                     <div className="trip-info">
-                        {trip?.passenger.user.first_name}
+                        {trip?.driver_trips[0].driver.user?.first_name}
                     </div>
 
                     {/* <div className="trip-info">

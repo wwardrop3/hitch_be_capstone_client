@@ -59,7 +59,7 @@ export const ProfilePage = () => {
                     <h4>Quick Stats</h4>
 
                    <div>
-                        <p>Avg Rating: {member?.avg_rating ? member?.avg_rating: "No Ratings Yet"}</p>
+                        <p>Avg Rating: {member?.avg_rating ? `${member?.avg_rating}/5`: "No Ratings Yet"}</p>
                         <p>Number of Ratings: {member?.total_ratings ? member?.total_ratings: "No Ratings Yet"}</p>
                    </div>
 
@@ -76,22 +76,15 @@ export const ProfilePage = () => {
                 {member?.driver_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/driver_trips/${trip.id}`}>
+                        
                         <div className="trip-list-trip-info">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th colSpan={3}>{trip?.driver.user['first_name']}</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Seats: {trip.seats}</td>
-                                        <td>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</td>
-                                        <td>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </td>
-                                    
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                            <Link to={`/driver_trips/${trip.id}`}>
+                           
+                            <h5>{trip.origin_place} to {trip.destination_place}</h5>
+                            <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
+                            <p>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </p>
+                            
+                                 
 
 
             
@@ -103,7 +96,7 @@ export const ProfilePage = () => {
                                 <tbody>
                                     <tr>
                                         <th>Start Date</th>
-                                        <td>{new Date(trip.start_date).toDateString()}</td>
+                                        <td>{new Date(trip?.start_date).toDateString()}</td>
                                     </tr>
 
                                     <tr>
@@ -137,9 +130,8 @@ export const ProfilePage = () => {
                     >Reject Request</button>
                 
                 } */}
-                </div>
-                        </Link>
-                        <button
+                </Link>
+                <button
                             onClick={
                                 () => {
                                     delete_driver_trip(trip.id)
@@ -150,6 +142,9 @@ export const ProfilePage = () => {
                                     )
                                 }
                             }>Delete Trip</button>
+                </div>
+                        
+                        
                            
                         
                         </>
@@ -165,10 +160,11 @@ export const ProfilePage = () => {
                 {member?.passenger_trips.map(trip => {
                     return(
                         <>
-                        <Link to={`/passenger_trips/${trip.id}`}>
+                        
                         <div className="trip-list-trip-info">
+                        <Link to={`/passenger_trips/${trip.id}`}>
                              
-                            <div>{trip.origin_place} to {trip.destination_place}</div>
+                            <h5>{trip.driver_trips[0]?.origin_place} to {trip.driver_trips[0]?.destination_place}</h5>
                             <p>Trip Distance: {parseInt(trip.trip_distance/ 1609)} miles</p>
                             <p>Trip Duration: {parseInt(trip.expected_travel_time / 3600)} hours </p>
                             
@@ -195,9 +191,7 @@ export const ProfilePage = () => {
                             </table>
                             
                         </div>
-                        </div>
                         </Link>
-
                         <button
                             onClick={
                                 () => {
@@ -209,6 +203,10 @@ export const ProfilePage = () => {
                                     )
                                 }
                             }>Delete Trip</button>
+                        </div>
+                        
+
+                        
                            
                         
                         </>

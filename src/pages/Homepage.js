@@ -50,7 +50,7 @@ export const HomePage = ({tempTrip, isDriver, highlight, setHighlight, pathHighl
                     setTrips(response.sort((a, b) => new Date (a.start_date) - new Date(b.start_date)))
                     }
             )
-        },[refresh, searchPoint, isDriver]
+        },[refresh, searchPoint]
 
         
     
