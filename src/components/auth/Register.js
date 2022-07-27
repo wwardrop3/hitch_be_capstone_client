@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom"
 import { registerUser } from "./AuthManager"
 
-export const Register = ({setToken, showRegister, setShowRegister, showLogin, setShowLogin }) => {
+export const Register = ({ setToken, showRegister, setShowRegister, showLogin, setShowLogin }) => {
   const firstName = useRef()
   const lastName = useRef()
   const email = useRef()
@@ -17,7 +17,7 @@ export const Register = ({setToken, showRegister, setShowRegister, showLogin, se
 
   const handleRegister = (e) => {
     e.preventDefault()
-    
+
     if (password.current.value === verifyPassword.current.value) {
       const newUser = {
         username: username.current.value,
@@ -30,11 +30,11 @@ export const Register = ({setToken, showRegister, setShowRegister, showLogin, se
       }
 
       registerUser(newUser)
-      .then(res => {
+        .then(res => {
           if ("valid" in res && res.valid) {
             setToken(res.token, res.is_staff)
-            
-            
+
+
           }
         })
     } else {
@@ -109,13 +109,13 @@ export const Register = ({setToken, showRegister, setShowRegister, showLogin, se
         <div className="field is-grouped">
           <div className="control">
             <button className="button is-link"
-            onClick={
-              (e) => {
-                handleRegister(e)
-                setShowRegister(!showRegister)
-                setShowLogin(true)
-              }
-            }>Submit</button>
+              onClick={
+                (e) => {
+                  handleRegister(e)
+                  setShowRegister(!showRegister)
+                  setShowLogin(true)
+                }
+              }>Submit</button>
           </div>
           <div className="control">
             <Link to="/login" className="button is-link is-light">Cancel</Link>

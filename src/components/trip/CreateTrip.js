@@ -1,29 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Places } from "../map/Places"
-import { create_new_driver_trip, create_new_passenger_trip, get_tags, sign_up_passenger } from "./TripAuthManager"
+import { create_new_driver_trip } from "./TripAuthManager"
 
-import {
-    GoogleMap,
-    Marker,
-    DirectionsRenderer,
-    Circle,
-    InfoBox,
-    DirectionsService,
-    MarkerClusterer,
-  } from "@react-google-maps/api";
 import { Link, useHistory } from "react-router-dom";
 /*global google*/
 const google = window.google = window.google ? window.google : {}
-  
 
 
-export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDestination, origin, setOrigin, originPlace, setOriginPlace, destinationPlace, setDestinationPlace}) => {
+
+export const CreateTrip = ({ isDriver, tempTrip, setTempTrip, destination, setDestination, origin, setOrigin, originPlace, setOriginPlace, destinationPlace, setDestinationPlace }) => {
     const history = useHistory()
 
     const [checkedState, setCheckedState] = useState({})
     const [tags, setTags] = useState()
-    
-    
+
+
     // useEffect(
     //     get_tags()
     //     .then(
@@ -56,7 +47,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
     //         if(checkedState[property] === true){
     //             copy.tags.push(parseInt(property))
     //         } 
-        
+
     //     setTempTrip(copy)
     //     }}
 
@@ -70,17 +61,17 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
 
     const options = useMemo(
         () => ({
-        mapId: "919771f94d285faa",
-        disableDefaultUI: true,
-        clickableIcons: false,
+            mapId: "919771f94d285faa",
+            disableDefaultUI: true,
+            clickableIcons: false,
         }),
         []
-      )
-
-    
+    )
 
 
-    
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
         tempTrip.origin = origin
@@ -99,7 +90,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
 
 
     const fetchDirections = () => {
-        
+
         const service = new google.maps.DirectionsService();
         service.route(
             {
@@ -109,7 +100,7 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
             },
             (result, status) => {
                 if (status === "OK" && result) {
-                    const copy = {...tempTrip}
+                    const copy = { ...tempTrip }
                     copy.path = result.routes[0].overview_polyline
                     copy.trip_distance = result.routes[0].legs[0].distance.value
                     copy.expected_travel_time = result.routes[0].legs[0].duration.value
@@ -125,96 +116,96 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
         }, [destination]
     )
 
-  
+
 
 
     return (
         <>
             <div className="create-trip-content">
-                
+
 
                 <div className="new-trip-form">
                     <div className="search-box">
                         <h3>Select Origin</h3>
                         <div className="search-box">
-                        {/* stores the lat/lng of office they chose, also want to move the map to that location */}
-                        <Places
-                        searchPoint={origin}
-                        setSearchPoint={setOrigin}
-                        place={originPlace}
-                        setPlace={setOriginPlace}
-                        />
-                    </div>
-
-                    
-         
-                        
-
-
-                    <div className="search-box">
-                        <h3>Select Destination</h3>
-                        <Places
-                        searchPoint={destination}
-                        setSearchPoint={setDestination}
-                        place={destinationPlace}
-                        setPlace={setDestinationPlace}
-                        />
-                    </div>
-                
-                            
-                            
-                    <div className="field">
-                        
-                        <label className="label">Departure Date/Time</label>
-                        <div className="control">
-                            <input className="input" type="datetime-local"
-                            onChange = {
-                                (evt) => {
-                                    const copy = {...tempTrip}
-                                    copy.start_date = evt.target.value
-                                    setTempTrip(copy)
-                                }
-                            } />
-                        </div>
+                            {/* stores the lat/lng of office they chose, also want to move the map to that location */}
+                            <Places
+                                searchPoint={origin}
+                                setSearchPoint={setOrigin}
+                                place={originPlace}
+                                setPlace={setOriginPlace}
+                            />
                         </div>
 
-            {isDriver ?
-            <>
+
+
+
+
+
+                        <div className="search-box">
+                            <h3>Select Destination</h3>
+                            <Places
+                                searchPoint={destination}
+                                setSearchPoint={setDestination}
+                                place={destinationPlace}
+                                setPlace={setDestinationPlace}
+                            />
+                        </div>
+
+
+
                         <div className="field">
-                            <label className="label">Detour Radius</label>
+
+                            <label className="label">Departure Date/Time</label>
                             <div className="control">
-                                <input className="input" type="number"
-                                onChange = {
-                                    (evt) => {
-                                        const copy = {...tempTrip}
-                                        copy.detour_radius = parseInt(evt.target.value)
-                                        setTempTrip(copy)
-                                    }
-                                }
-                                />
+                                <input className="input" type="datetime-local"
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...tempTrip }
+                                            copy.start_date = evt.target.value
+                                            setTempTrip(copy)
+                                        }
+                                    } />
                             </div>
                         </div>
-            
 
-                     
-                    
-                        
-                        
-            
-                        <div className="field">
-                        <label className="label">Seats Available</label>
-                        <div className="control">
-                            <input className="input" type="number" 
-                            onChange = {
-                                (evt) => {
-                                    const copy = {...tempTrip}
-                                    copy.seats = evt.target.value
-                                    setTempTrip(copy)
-                                }
-                            }/>
-                        </div>
-                        </div>
-                        {/* <div className="tags">
+                        {isDriver ?
+                            <>
+                                <div className="field">
+                                    <label className="label">Detour Radius</label>
+                                    <div className="control">
+                                        <input className="input" type="number"
+                                            onChange={
+                                                (evt) => {
+                                                    const copy = { ...tempTrip }
+                                                    copy.detour_radius = parseInt(evt.target.value)
+                                                    setTempTrip(copy)
+                                                }
+                                            }
+                                        />
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div className="field">
+                                    <label className="label">Seats Available</label>
+                                    <div className="control">
+                                        <input className="input" type="number"
+                                            onChange={
+                                                (evt) => {
+                                                    const copy = { ...tempTrip }
+                                                    copy.seats = evt.target.value
+                                                    setTempTrip(copy)
+                                                }
+                                            } />
+                                    </div>
+                                </div>
+                                {/* <div className="tags">
 
                         {tags?.map(tag => {
 
@@ -232,45 +223,45 @@ export const CreateTrip = ({isDriver, tempTrip, setTempTrip, destination, setDes
                             )
                                 })}
                             </div> */}
-                   
 
-                       
-            
-            
-                        
-                
-                </>:""}
 
-                <div className="field">
-                        <label className="label">Trip Summary</label>
+
+
+
+
+
+                            </> : ""}
+
+                        <div className="field">
+                            <label className="label">Trip Summary</label>
+                            <div className="control">
+                                <input className="input" type="text"
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...tempTrip }
+                                            copy.trip_summary = evt.target.value
+                                            setTempTrip(copy)
+                                        }
+                                    } />
+                            </div>
+                        </div>
+
                         <div className="control">
-                            <input className="input" type="text" 
-                            onChange = {
-                                (evt) => {
-                                    const copy = {...tempTrip}
-                                    copy.trip_summary = evt.target.value
-                                    setTempTrip(copy)
-                                }
-                            }/>
-                        </div>
-                        </div>
-                        
-                <div className="control">
-                            <button className="button is-link" 
-                            onClick={
-                                (evt) => {
-                                    handleSubmit(evt)
-                                }
-                            }>Submit</button>
+                            <button className="button is-link"
+                                onClick={
+                                    (evt) => {
+                                        handleSubmit(evt)
+                                    }
+                                }>Submit</button>
                         </div>
                         <div className="control">
                             <Link to="/login" className="button is-link is-light">Cancel</Link>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
         </>
     )
 
-                        }
+}

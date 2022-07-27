@@ -2,10 +2,9 @@ import React, { useMemo, useState } from "react"
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./components/navbar/Navbar"
-import { Sidebar } from "./components/sidebar/Sidebar"
 import { LoginLandingPage } from "./pages/LoginLandingPage"
-// export const host = "http://localhost:8000"
-export const host = "https://hitch-capstone-server.herokuapp.com"
+export const host = "http://localhost:8000"
+// export const host = "https://hitch-capstone-server.herokuapp.com"
 
 
 
@@ -14,11 +13,11 @@ export const Hitch = () => {
     const [staff, setStaffState] = useState(localStorage.getItem('staff'))
     const [isDriver, setIsDriver] = useState(true)
     const [refresh, setRefresh] = useState(false)
-    
+
     const [searchPoint, setSearchPoint] = useState()
 
 
-    
+
 
 
 
@@ -33,7 +32,7 @@ export const Hitch = () => {
     const currentLocation = useMemo(
         () => {
             setSearchPoint(navigator.geolocation.getCurrentPosition(success))
-        },[]
+        }, []
     )
 
 
@@ -48,21 +47,21 @@ export const Hitch = () => {
 
     return <>
         {
-        token
-            ?
-            <Route>
-                <NavBar refresh ={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} searchPoint={searchPoint} setSearchPoint={setSearchPoint} />
-                
-                <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} refresh ={refresh} setRefresh={setRefresh} searchPoint={searchPoint} setSearchPoint={setSearchPoint}/>
-            </Route>
-            :
-            <Redirect to="/login" />
+            token
+                ?
+                <Route>
+                    <NavBar refresh={refresh} setRefresh={setRefresh} isDriver={isDriver} setIsDriver={setIsDriver} token={token} setToken={setToken} searchPoint={searchPoint} setSearchPoint={setSearchPoint} />
+
+                    <ApplicationViews isDriver={isDriver} setIsDriver={setIsDriver} refresh={refresh} setRefresh={setRefresh} searchPoint={searchPoint} setSearchPoint={setSearchPoint} />
+                </Route>
+                :
+                <Redirect to="/login" />
         }
 
         <Route exact path="/login" >
-            <LoginLandingPage token={token} setToken={setToken}/>
+            <LoginLandingPage token={token} setToken={setToken} />
         </Route>
 
 
     </>
-    }
+}
