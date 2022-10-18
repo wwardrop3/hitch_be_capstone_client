@@ -29,6 +29,7 @@ export const Hitch = () => {
         localStorage.setItem("lng", coordinates.longitude)
     }
 
+    // uses built in browser tool to get current location of user to set the original search point on map
     const currentLocation = useMemo(
         () => {
             setSearchPoint(navigator.geolocation.getCurrentPosition(success))
@@ -36,6 +37,7 @@ export const Hitch = () => {
     )
 
 
+    // function sets the token in the local browser
     const setToken = (newToken, is_staff) => {
         localStorage.setItem('token', newToken)
         localStorage.setItem('staff', is_staff)
