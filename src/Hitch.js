@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./components/navbar/Navbar"
 import { LoginLandingPage } from "./pages/LoginLandingPage"
-export const host = "ttps://hitch-capstone-server.herokuapp.com"
+export const host = "https://hitch-capstone-server.herokuapp.com"
 // export const host = "https://hitch-capstone-server.herokuapp.com"
 
 
