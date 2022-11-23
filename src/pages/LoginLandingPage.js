@@ -5,7 +5,7 @@ import "../pageStyles/loginLandingPage.css"
 
 
 
-export const LoginLandingPage = ({token, setToken}) => {
+export const LoginLandingPage = ({ token, setToken }) => {
     const [showLogin, setShowLogin] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
 
@@ -13,44 +13,44 @@ export const LoginLandingPage = ({token, setToken}) => {
 
     return (
         <>
-        <div className="landing-page-container">
-            <div className="background-image"></div>
-            <div className="hitch-title-logo"></div>
-       
-       
-          
-            <div className="auth-buttons">
-                <button className="auth-button"
-                    onClick={
-                        () => {
-                            setShowLogin(!showLogin)
-                            setShowRegister(false)
-                        }
-                    }>Login</button>
+            <div className="landing-page-container">
+                <div className="background-image"></div>
+                <div className="hitch-title-logo"></div>
 
-            <button className="auth-button"
-                onClick={
-                    () => {
-                        setShowRegister(!showRegister)
-                        setShowLogin(false)
-                    }
-                }>Register</button>
+
+
+                <div className="auth-buttons">
+                    <button className="auth-button"
+                        onClick={
+                            () => {
+                                setShowLogin(!showLogin)
+                                setShowRegister(false)
+                            }
+                        }>Login</button>
+
+                    <button className="auth-button"
+                        onClick={
+                            () => {
+                                setShowRegister(!showRegister)
+                                setShowLogin(false)
+                            }
+                        }>Register</button>
+                </div>
+
+
+                <div className="auth-content">
+
+                    {showLogin ? <Login token={token} setToken={setToken} /> : ""}
+
+                    {showRegister ? <Register token={token} setToken={setToken} showRegister={showRegister} setShowRegister={setShowRegister} showLogin={showLogin} setShowLogin={setShowLogin} /> : ""}
+
+                </div>
             </div>
-                
-            
-        <div className="auth-content">
-            
-            {showLogin ? <Login token={token} setToken = {setToken} /> :""}
 
-            {showRegister ? <Register token={token} setToken = {setToken} showRegister={showRegister} setShowRegister={setShowRegister} showLogin={showLogin} setShowLogin={setShowLogin} /> :""}
 
-        </div>
-        </div>
 
-    
-     
-     
-       
+
+
 
         </>
     )
