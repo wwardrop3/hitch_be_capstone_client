@@ -11,8 +11,8 @@
     "@react-google-maps/api": "^2.12.0",
     "@react-google-maps/marker-clusterer": "^2.11.8",
     "bootstrap-icons": "^1.8.3",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-google-maps": "^9.4.5",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^5.3.3",
@@ -25,12 +25,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

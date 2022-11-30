@@ -5,6 +5,7 @@ import "./trip.css"
 import { delete_driver_trip, rate_driver, remove_passenger, sign_up_passenger, update_driver_trip } from "./TripAuthManager"
 import { useEffect } from "react";
 import { NewMessage } from "../message/NewMessage";
+import { Link, useHistory } from "react-router-dom";
 
 export const TripListTrip = ({ trip, refresh, setRefresh, pathHighlight, setPathHighlight, highlight, setHighlight }) => {
 
